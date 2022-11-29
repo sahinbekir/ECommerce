@@ -1,0 +1,25 @@
+﻿@model IEnumerable<EntityLayer.Concrete.Product>
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/GuestLayout/GuestLayout.cshtml";
+}
+
+<h1>Details</h1>
+@foreach (var item in Model)
+{
+    
+        <h1>@item.ProductId</h1>
+        <h1>@item.ProductVersion</h1>
+        <h1>@item.ProductName</h1>
+        <h1>@item.ProductDesc</h1>
+        <h1>@item.ProductImage</h1>
+        <h1>@item.ProductStatus</h1>
+        <h1>@item.ProductOwnerId</h1>
+        <h1>@item.ProductCategoryId</h1>
+        <h1>@item.ProductCreateDate</h1>
+        <h1>@item.ProductThumbnailImage</h1>
+        <h1>@item.ProductCost</h1>
+    
+}
+

@@ -32,12 +32,16 @@ namespace DataAccessLayer.Concrete
             base.OnModelCreating(modelBuilder);
         }
         public DbSet<Product> Products { get; set; }
+        public DbSet<StockAmount> StockAmounts { get; set; }
         public DbSet<ProductComment> ProductComments { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<SubCategory> SubCategories { get; set; }
         public DbSet<ProductRating> ProductRatings { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<NewsProduct> NewsProducts { get; set; }
+        public DbSet<ShoppingCart> ShoppingCarts { get; set; }
+        public DbSet<ProductCart> ProductCarts { get; set; }
     }
 }
 // Migration Commands *Packet Manager*

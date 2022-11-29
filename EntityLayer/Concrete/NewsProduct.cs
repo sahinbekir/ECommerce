@@ -12,7 +12,7 @@ namespace EntityLayer.Concrete
         [Key]
         public int MailID { get; set; }
         public int ProductId { get; set; }
-        public string? Mail { get; set; }
-        public bool MailStatus { get; set; }
+        public int UserId { get; set; }
+        public bool SubNewsStatus { get; set; }
     }
 }

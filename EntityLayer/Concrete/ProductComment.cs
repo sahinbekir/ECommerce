@@ -19,6 +19,5 @@ namespace EntityLayer.Concrete
         public int ProductScore { get; set; }
         public DateTime ProductCommentCreateDate { get; set; }
         public bool ProductCommentStatus { get; set; }
-        public Product? Product { get; set; }
     }
 }
