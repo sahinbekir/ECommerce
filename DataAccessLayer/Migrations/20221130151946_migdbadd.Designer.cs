@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20221129211503_migdbtry1")]
-    partial class migdbtry1
+    [Migration("20221130151946_migdbadd")]
+    partial class migdbadd
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -66,14 +66,12 @@ namespace DataAccessLayer.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("BornDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("City")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -88,11 +86,9 @@ namespace DataAccessLayer.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("FullName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImageUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
@@ -118,6 +114,9 @@ namespace DataAccessLayer.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<DateTime>("RegisterDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -129,7 +128,6 @@ namespace DataAccessLayer.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("Village")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -147,53 +145,53 @@ namespace DataAccessLayer.Migrations
 
             modelBuilder.Entity("EntityLayer.Concrete.Category", b =>
                 {
-                    b.Property<int>("CategoryID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryID"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("CategoryDescription")
+                    b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CategoryName")
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("CategoryStatus")
+                    b.Property<bool>("Status")
                         .HasColumnType("bit");
 
-                    b.HasKey("CategoryID");
+                    b.HasKey("Id");
 
                     b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Message", b =>
                 {
-                    b.Property<int>("MessageId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MessageId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("MessageContext")
+                    b.Property<string>("Context")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("MessageDate")
+                    b.Property<int>("MessageReceiver")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MessageSender")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("PostDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("MessageReceiver")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("MessageSender")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("MessageStatus")
+                    b.Property<bool>("Status")
                         .HasColumnType("bit");
 
-                    b.Property<string>("MessageSubject")
+                    b.Property<string>("Subject")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("MessageId");
+                    b.HasKey("Id");
 
                     b.HasIndex("MessageReceiver");
 
@@ -202,111 +200,122 @@ namespace DataAccessLayer.Migrations
                     b.ToTable("Messages");
                 });
 
-            modelBuilder.Entity("EntityLayer.Concrete.NewsProduct", b =>
+            modelBuilder.Entity("EntityLayer.Concrete.Model", b =>
                 {
-                    b.Property<int>("MailID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MailID"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Models");
+                });
+
+            modelBuilder.Entity("EntityLayer.Concrete.NewsProduct", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("SubNewsStatus")
+                    b.Property<bool>("Status")
                         .HasColumnType("bit");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("MailID");
+                    b.HasKey("Id");
 
                     b.ToTable("NewsProducts");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Notification", b =>
                 {
-                    b.Property<int>("NotificationID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NotificationID"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<DateTime>("NotificationDate")
+                    b.Property<string>("Detail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("PostDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("NotificationDetails")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("NotificationStatus")
+                    b.Property<bool>("Status")
                         .HasColumnType("bit");
 
-                    b.Property<string>("NotificationTitle")
-                        .IsRequired()
+                    b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("NotificationType")
-                        .IsRequired()
+                    b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("NotificationID");
+                    b.HasKey("Id");
 
                     b.ToTable("Notifications");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Product", b =>
                 {
-                    b.Property<int>("ProductId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("ProductCategoryId")
+                    b.Property<int>("Cost")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductCost")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("ProductCreateDate")
+                    b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ProductDesc")
-                        .IsRequired()
+                    b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ProductImage")
+                    b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ProductName")
-                        .IsRequired()
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ProductOwnerId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("ProductStatus")
+                    b.Property<bool>("Status")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ProductThumbnailImage")
+                    b.Property<int>("SubCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ThumbnailImgUrl")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ProductVersion")
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Version")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ProductId");
+                    b.HasKey("Id");
 
                     b.ToTable("Products");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.ProductCart", b =>
                 {
-                    b.Property<int>("CartId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CartId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
@@ -314,127 +323,132 @@ namespace DataAccessLayer.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("CartId");
+                    b.HasKey("Id");
 
                     b.ToTable("ProductCarts");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.ProductComment", b =>
                 {
-                    b.Property<int>("ProductCommentId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductCommentId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("CommenterId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ProductCommentContent")
+                    b.Property<string>("CommentContent")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("ProductCommentCreateDate")
+                    b.Property<string>("CommentTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool>("ProductCommentStatus")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("ProductCommentTitle")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductScore")
+                    b.Property<int>("Score")
                         .HasColumnType("int");
 
-                    b.HasKey("ProductCommentId");
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
 
                     b.ToTable("ProductComments");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.ProductRating", b =>
                 {
-                    b.Property<int>("ProductRatingId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductRatingId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductRatingCount")
+                    b.Property<int>("RatingCount")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductTotalScore")
+                    b.Property<int>("TotalScore")
                         .HasColumnType("int");
 
-                    b.HasKey("ProductRatingId");
+                    b.HasKey("Id");
 
                     b.ToTable("ProductRatings");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.ShoppingCart", b =>
                 {
-                    b.Property<int>("ShopId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ShopId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("Cost")
+                        .HasColumnType("int");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ShopCost")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("ShopId");
+                    b.HasKey("Id");
 
                     b.ToTable("ShoppingCarts");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.StockAmount", b =>
                 {
-                    b.Property<int>("StockAmountId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StockAmountId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int>("StockAmountScore")
+                    b.Property<int>("SoldScore")
                         .HasColumnType("int");
 
-                    b.HasKey("StockAmountId");
+                    b.Property<int>("StockScore")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
 
                     b.ToTable("StockAmounts");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.SubCategory", b =>
                 {
-                    b.Property<int>("SubCategoryId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SubCategoryId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<string>("SubCategoryDescription")
+                    b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SubCategoryName")
-                        .IsRequired()
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("SubCategoryStatus")
+                    b.Property<bool>("Status")
                         .HasColumnType("bit");
 
-                    b.HasKey("SubCategoryId");
+                    b.HasKey("Id");
 
                     b.ToTable("SubCategories");
                 });
@@ -546,11 +560,13 @@ namespace DataAccessLayer.Migrations
                 {
                     b.HasOne("EntityLayer.Concrete.AppUser", "ReceiverUser")
                         .WithMany("UserReceiver")
-                        .HasForeignKey("MessageReceiver");
+                        .HasForeignKey("MessageReceiver")
+                        .IsRequired();
 
                     b.HasOne("EntityLayer.Concrete.AppUser", "SenderUser")
                         .WithMany("UserSender")
-                        .HasForeignKey("MessageSender");
+                        .HasForeignKey("MessageSender")
+                        .IsRequired();
 
                     b.Navigation("ReceiverUser");
 

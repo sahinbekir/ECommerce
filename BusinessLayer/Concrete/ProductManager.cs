@@ -19,7 +19,7 @@ namespace BusinessLayer.Concrete
         }
         public List<Product> GetProductById(int id)
         {
-            return _productDal.GetList(x => x.ProductId == id);
+            return _productDal.GetList(x => x.Id == id);
         }
         public Product GetById(int id)
         {

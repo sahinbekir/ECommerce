@@ -11,17 +11,17 @@ namespace EntityLayer.Concrete
     public class Product
     {
         [Key]
-        public int ProductId { get; set; }
-        public string ProductName { get; set; }
-        public string ProductDesc { get; set; }
-        public string? ProductImage { get; set; }
-        public string? ProductThumbnailImage { get; set; }
-        public int ProductCategoryId { get; set; }
-        public int ProductOwnerId { get; set; }
-        public string? ProductVersion { get; set; }
-        public int ProductCost { get; set; }
-        public DateTime ProductCreateDate { get; set; }
-        public bool ProductStatus { get; set; }
+        public int Id { get; set; }
+        public string? Name { get; set; }
+        public string? Description { get; set; }
+        public string? ImageUrl { get; set; }
+        public string? ThumbnailImgUrl { get; set; }
+        public int SubCategoryId { get; set; }// public SubCategory? SubCategory { get; set; }
+        public int UserId { get; set; }// public AppUser? User { get; set; }
+        public string? Version { get; set; }
+        public int Cost { get; set; }
+        public DateTime CreateDate { get; set; }
+        public bool Status { get; set; }
 
     }
 

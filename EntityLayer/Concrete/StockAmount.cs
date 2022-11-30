@@ -10,8 +10,9 @@ namespace EntityLayer.Concrete
     public class StockAmount
     {
         [Key]
-        public int StockAmountId { get; set; }
-        public int ProductId { get; set; }
-        public int StockAmountScore { get; set; }
+        public int Id { get; set; }
+        public int ProductId { get; set; }// public Product? Product { get; set; }
+        public int StockScore { get; set; }
+        public int SoldScore { get; set; }
     }
 }

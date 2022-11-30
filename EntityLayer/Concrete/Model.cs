@@ -7,14 +7,10 @@ using System.Threading.Tasks;
 
 namespace EntityLayer.Concrete
 {
-    public class Notification
+    public class Model
     {
         [Key]
         public int Id { get; set; }
-        public string? Type { get; set; }
-        public string? Title { get; set; }
-        public string? Detail { get; set; }
-        public DateTime PostDate { get; set; }
-        public bool Status { get; set; }
+        public string? Name { get; set; }
     }
 }

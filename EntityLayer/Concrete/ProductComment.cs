@@ -11,13 +11,13 @@ namespace EntityLayer.Concrete
     public class ProductComment
     {
         [Key]
-        public int ProductCommentId { get; set; }
-        public int CommenterId { get; set; }
-        public int ProductId { get; set; }
-        public string? ProductCommentTitle { get; set; }
-        public string? ProductCommentContent { get; set; }
-        public int ProductScore { get; set; }
-        public DateTime ProductCommentCreateDate { get; set; }
-        public bool ProductCommentStatus { get; set; }
+        public int Id { get; set; }
+        public int UserId { get; set; }// public AppUser? User { get; set; }
+        public int ProductId { get; set; }// public Product? Product { get; set; }
+        public string? CommentTitle { get; set; }
+        public string? CommentContent { get; set; }
+        public int Score { get; set; }
+        public DateTime CreateDate { get; set; }
+        public bool Status { get; set; }
     }
 }

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DataAccessLayer.Migrations
 {
-    public partial class migdbtry1 : Migration
+    public partial class migdbadd : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -30,12 +30,13 @@ namespace DataAccessLayer.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    City = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Village = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Village = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BornDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    RegisterDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -60,161 +61,176 @@ namespace DataAccessLayer.Migrations
                 name: "Categories",
                 columns: table => new
                 {
-                    CategoryID = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CategoryName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CategoryDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CategoryStatus = table.Column<bool>(type: "bit", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Status = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Categories", x => x.CategoryID);
+                    table.PrimaryKey("PK_Categories", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Models",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Models", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "NewsProducts",
                 columns: table => new
                 {
-                    MailID = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProductId = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false),
-                    SubNewsStatus = table.Column<bool>(type: "bit", nullable: false)
+                    Status = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_NewsProducts", x => x.MailID);
+                    table.PrimaryKey("PK_NewsProducts", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Notifications",
                 columns: table => new
                 {
-                    NotificationID = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    NotificationType = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NotificationTitle = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NotificationDetails = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NotificationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    NotificationStatus = table.Column<bool>(type: "bit", nullable: false)
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Detail = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PostDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Status = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Notifications", x => x.NotificationID);
+                    table.PrimaryKey("PK_Notifications", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "ProductCarts",
                 columns: table => new
                 {
-                    CartId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    ProductId = table.Column<int>(type: "int", nullable: false)
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductCarts", x => x.CartId);
+                    table.PrimaryKey("PK_ProductCarts", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "ProductComments",
                 columns: table => new
                 {
-                    ProductCommentId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CommenterId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     ProductId = table.Column<int>(type: "int", nullable: false),
-                    ProductCommentTitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ProductCommentContent = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ProductScore = table.Column<int>(type: "int", nullable: false),
-                    ProductCommentCreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ProductCommentStatus = table.Column<bool>(type: "bit", nullable: false)
+                    CommentTitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CommentContent = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Score = table.Column<int>(type: "int", nullable: false),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Status = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductComments", x => x.ProductCommentId);
+                    table.PrimaryKey("PK_ProductComments", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "ProductRatings",
                 columns: table => new
                 {
-                    ProductRatingId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProductId = table.Column<int>(type: "int", nullable: false),
-                    ProductTotalScore = table.Column<int>(type: "int", nullable: false),
-                    ProductRatingCount = table.Column<int>(type: "int", nullable: false)
+                    TotalScore = table.Column<int>(type: "int", nullable: false),
+                    RatingCount = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductRatings", x => x.ProductRatingId);
+                    table.PrimaryKey("PK_ProductRatings", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Products",
                 columns: table => new
                 {
-                    ProductId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProductDesc = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProductImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ProductThumbnailImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ProductCategoryId = table.Column<int>(type: "int", nullable: false),
-                    ProductOwnerId = table.Column<int>(type: "int", nullable: false),
-                    ProductVersion = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ProductCost = table.Column<int>(type: "int", nullable: false),
-                    ProductCreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ProductStatus = table.Column<bool>(type: "bit", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ThumbnailImgUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SubCategoryId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    Version = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Cost = table.Column<int>(type: "int", nullable: false),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Status = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Products", x => x.ProductId);
+                    table.PrimaryKey("PK_Products", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "ShoppingCarts",
                 columns: table => new
                 {
-                    ShopId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProductId = table.Column<int>(type: "int", nullable: false),
-                    ShopCost = table.Column<int>(type: "int", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    Cost = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ShoppingCarts", x => x.ShopId);
+                    table.PrimaryKey("PK_ShoppingCarts", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "StockAmounts",
                 columns: table => new
                 {
-                    StockAmountId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProductId = table.Column<int>(type: "int", nullable: false),
-                    StockAmountScore = table.Column<int>(type: "int", nullable: false)
+                    StockScore = table.Column<int>(type: "int", nullable: false),
+                    SoldScore = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_StockAmounts", x => x.StockAmountId);
+                    table.PrimaryKey("PK_StockAmounts", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "SubCategories",
                 columns: table => new
                 {
-                    SubCategoryId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
-                    SubCategoryName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SubCategoryDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SubCategoryStatus = table.Column<bool>(type: "bit", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Status = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SubCategories", x => x.SubCategoryId);
+                    table.PrimaryKey("PK_SubCategories", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -327,18 +343,18 @@ namespace DataAccessLayer.Migrations
                 name: "Messages",
                 columns: table => new
                 {
-                    MessageId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    MessageSender = table.Column<int>(type: "int", nullable: true),
-                    MessageReceiver = table.Column<int>(type: "int", nullable: true),
-                    MessageSubject = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    MessageContext = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    MessageDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    MessageStatus = table.Column<bool>(type: "bit", nullable: false)
+                    MessageSender = table.Column<int>(type: "int", nullable: false),
+                    MessageReceiver = table.Column<int>(type: "int", nullable: false),
+                    Subject = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Context = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PostDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Status = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Messages", x => x.MessageId);
+                    table.PrimaryKey("PK_Messages", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Messages_AspNetUsers_MessageReceiver",
                         column: x => x.MessageReceiver,
@@ -423,6 +439,9 @@ namespace DataAccessLayer.Migrations
 
             migrationBuilder.DropTable(
                 name: "Messages");
+
+            migrationBuilder.DropTable(
+                name: "Models");
 
             migrationBuilder.DropTable(
                 name: "NewsProducts");

@@ -1,4 +1,4 @@
-﻿using DocumentFormat.OpenXml.Wordprocessing;
+﻿using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 
 namespace ECommerce.Models
@@ -7,7 +7,7 @@ namespace ECommerce.Models
     {
         [Display(Name = "Ad Soyad")]
         [Required(ErrorMessage = "Please valid Name and Surname")]
-        public string NameSurname { get; set; }
+        public string FullName { get; set; }
 
         [Display(Name = "Password")]
         [Required(ErrorMessage = "Please valid Password")]
@@ -25,12 +25,24 @@ namespace ECommerce.Models
         [Required(ErrorMessage = "Please valid Username")]
         public string UserName { get; set; }
 
-        [Display(Name = "ImgUrl")]
-        [Required(ErrorMessage = "Please valid ImgUrl")]
-        public string ImageUrl { get; set; }
+        //[Display(Name = "ImgUrl")]
+        //[Required(ErrorMessage = "Please valid ImgUrl")]
+        public IFormFile? ImageUrl { get; set; }
 
         [Display(Name = "PhoneNumber")]
         [Required(ErrorMessage = "Please valid PhoneNumber")]
         public string PhoneNumber { get; set; }
+        [Display(Name = "Address")]
+        [Required(ErrorMessage = "Please valid Address")]
+        public string Address { get; set; }
+        [Display(Name = "City")]
+        [Required(ErrorMessage = "Please valid City")]
+        public string City { get; set; }
+        [Display(Name = "Village")]
+        [Required(ErrorMessage = "Please valid Village")]
+        public string Village { get; set; }
+        [Display(Name = "BornDate")]
+        [Required(ErrorMessage = "Please valid BornDate")]
+        public DateTime BornDate { get; set; }
     }
 }

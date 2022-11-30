@@ -10,10 +10,10 @@ namespace EntityLayer.Concrete
     public class SubCategory
     {
         [Key]
-        public int SubCategoryId { get; set; }
-        public int CategoryId { get; set; }
-        public string SubCategoryName { get; set; }
-        public string? SubCategoryDescription { get; set; }
-        public bool SubCategoryStatus { get; set; }
+        public int Id { get; set; }
+        public int CategoryId { get; set; }// public Category? Category { get; set; }
+        public string? Name { get; set; }
+        public string? Description { get; set; }
+        public bool Status { get; set; }
     }
 }

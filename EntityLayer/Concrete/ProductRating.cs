@@ -10,9 +10,9 @@ namespace EntityLayer.Concrete
     public class ProductRating
     {
         [Key]
-        public int ProductRatingId { get; set; }
-        public int ProductId { get; set; }
-        public int ProductTotalScore { get; set; }
-        public int ProductRatingCount { get; set; }
+        public int Id { get; set; }
+        public int ProductId { get; set; }// public Product? Product { get; set; }
+        public int TotalScore { get; set; }
+        public int RatingCount { get; set; }
     }
 }

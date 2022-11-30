@@ -1,45 +1,43 @@
-﻿@using EntityLayer.Concrete
-@model List<Product>
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model IPagedList<EntityLayer.Concrete.Product>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/GuestLayout/GuestLayout.cshtml";
 }
 
-<h1>PRODUCT LIST SAHINBEKIR</h1>
 <div class="wrapper wrapper-content animated fadeInRight">
-    @foreach (var item in Model)
-    {
-        <div class="col-md-3">
-            <div class="ibox">
-                <div class="ibox-content product-box">
-                    <a href="/Product/Details/@item.ProductId">
-                        <img src="@item.ProductImage" class="card-img-top img-fluid" alt="">
-                    </a>
-                    <!--
-                    <div class="product-imitation">
-                        item.ProductImage
-                    </div>
-                    -->
-                    <div class="product-desc">
-                        <span class="product-price">
-                            $ @item.ProductCost
-                        </span>
-                        <small class="text-muted">@item.ProductCategoryId</small>
-                        <a href="/Product/Details/@item.ProductId" class="product-name"> @item.ProductName</a>
-
-
-
-                        <div class="small m-t-xs">
-                            @item.ProductDesc
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3">
+                <div class="ibox">
+                    <div class="ibox-content product-box">
+                        <a href="/Product/Details/@item.Id">
+                            <img src="@item.ImageUrl" class="card-img-top img-fluid" alt="">
+                        </a>
+                        <!--
+                        <div class="product-imitation">
+                            item.ProductImage
                         </div>
-                        <div class="m-t text-righ">
-
-                            <a href="/Product/Details/@item.ProductId" class="btn btn-xs btn-outline btn-primary">Info <i class="fa fa-long-arrow-right">Read More</i> </a>
+                        -->
+                        <div class="product-desc">
+                            <span class="product-price">
+                                $@item.Cost
+                            </span>
+                            <small class="text-muted">@item.SubCategoryId</small>
+                            <a href="/Product/Details/@item.Id" class="product-name"> @item.Name</a>
+                            <div class="small m-t-xs">
+                                @item.Description
+                            </div>
+                            <div class="m-t text-righ">
+                                <a href="/Product/Details/@item.Id" class="btn btn-xs btn-outline btn-primary">Info <i class="fa fa-long-arrow-right">Read More</i> </a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    }
+        }
+    </div>
+    @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new {page}))
 </div>
-

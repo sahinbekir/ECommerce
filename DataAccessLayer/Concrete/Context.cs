@@ -31,17 +31,18 @@ namespace DataAccessLayer.Concrete
                 .OnDelete(DeleteBehavior.ClientSetNull);
             base.OnModelCreating(modelBuilder);
         }
-        public DbSet<Product> Products { get; set; }
-        public DbSet<StockAmount> StockAmounts { get; set; }
-        public DbSet<ProductComment> ProductComments { get; set; }
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<SubCategory> SubCategories { get; set; }
-        public DbSet<ProductRating> ProductRatings { get; set; }
-        public DbSet<Message> Messages { get; set; }
-        public DbSet<Notification> Notifications { get; set; }
-        public DbSet<NewsProduct> NewsProducts { get; set; }
-        public DbSet<ShoppingCart> ShoppingCarts { get; set; }
-        public DbSet<ProductCart> ProductCarts { get; set; }
+        public DbSet<Product>? Products { get; set; }
+        public DbSet<StockAmount>? StockAmounts { get; set; }
+        public DbSet<ProductComment>? ProductComments { get; set; }
+        public DbSet<Category>? Categories { get; set; }
+        public DbSet<SubCategory>? SubCategories { get; set; }
+        public DbSet<ProductRating>? ProductRatings { get; set; }
+        public DbSet<Message>? Messages { get; set; }
+        public DbSet<Notification>? Notifications { get; set; }
+        public DbSet<NewsProduct>? NewsProducts { get; set; }
+        public DbSet<ShoppingCart>? ShoppingCarts { get; set; }
+        public DbSet<ProductCart>? ProductCarts { get; set; }
+        public DbSet<Model>? Models { get; set; }
     }
 }
 // Migration Commands *Packet Manager*
@@ -58,8 +59,8 @@ On Products
 After Insert
 As
 Declare @ID int
-Select @ID=ProductId from inserted
-Insert Into ProductRatings (ProductId,ProductTotalScore,ProductRatingCount)
+Select @ID=Id from inserted
+Insert Into ProductRatings (ProductId,TotalScore,RatingCount)
 Values (@ID,0,0)
 */
 
@@ -70,8 +71,8 @@ After Insert
 As
 Declare @ID int
 Declare @Score int
-Declare @ProductRaitingCount int
-Select @ID=ProductId, @Score=ProductScore from inserted
-Update ProductRatings Set ProductTotalScore=ProductTotalScore+@Score, ProductRatingCount+=1
+Declare @RaitingCount int
+Select @ID=Id, @Score=ProductScore from inserted
+Update ProductRatings Set TotalScore=TotalScore+@Score, RatingCount+=1
 Where ProductId=@ID
 */

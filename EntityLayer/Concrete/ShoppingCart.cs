@@ -11,8 +11,9 @@ namespace EntityLayer.Concrete
     public class ShoppingCart
     {
         [Key]
-        public int ShopId { get; set; }
-        public int ProductId { get; set; }
-        public int ShopCost { get; set; }
+        public int Id { get; set; }
+        public int ProductId { get; set; }// public Product? Product { get; set; }
+        public int UserId { get; set; }// public AppUser? User { get; set; }
+        public int Cost { get; set; }
     }
 }
