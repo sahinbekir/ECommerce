@@ -33,7 +33,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\UserImageFiles\" />
+    <Folder Include="wwwroot\Media\" />
+    <Folder Include="wwwroot\Media\ProductMovieFiles\" />
+    <Folder Include="wwwroot\Media\ProductImageFiles\" />
+    <Folder Include="wwwroot\Media\UserImageFiles\" />
   </ItemGroup>
 
 </Project>

@@ -37,8 +37,8 @@ builder.Services.ConfigureApplicationCookie(options =>
 {
     options.Cookie.HttpOnly = true;
     options.ExpireTimeSpan = TimeSpan.FromMinutes(131);
-    options.AccessDeniedPath = new PathString("/Login/AccessDenied");
-    options.LoginPath = "/Login/Index/";
+    options.AccessDeniedPath = new PathString("/SignInUser/AccessDenied");
+    options.LoginPath = "/SignInUser/Index/";
     options.SlidingExpiration = true;
 });
 var app = builder.Build();
@@ -50,7 +50,7 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-app.UseStatusCodePagesWithReExecute("/ErrorPage/error1", "?code={0}");
+app.UseStatusCodePagesWithReExecute("/ErrorPage/Error", "?code={0}");
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseHttpsRedirection();
@@ -62,7 +62,7 @@ app.UseRouting();
 app.UseAuthorization();
 app.MapControllerRoute(
     name: "areas",
-    pattern: "{area:exists}/{controller=Login}/{action=Index}/{id?}");
+    pattern: "{area:exists}/{controller=SignInUser}/{action=Index}/{id?}");
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Product}/{action=Index}/{id?}");

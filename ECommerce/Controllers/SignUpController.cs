@@ -33,7 +33,7 @@ namespace ECommerce.Controllers
                 {
                     var extension = Path.GetExtension(p.ImageUrl.FileName);
                     var newimagename = Guid.NewGuid() + extension;
-                    var location = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/UserImageFiles/", newimagename);
+                    var location = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Media/UserImageFiles/", newimagename);
                     var stream = new FileStream(location, FileMode.Create);
                     p.ImageUrl.CopyTo(stream);
                     user.ImageUrl = newimagename;

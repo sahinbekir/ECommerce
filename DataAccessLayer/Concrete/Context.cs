@@ -42,7 +42,7 @@ namespace DataAccessLayer.Concrete
         public DbSet<NewsProduct>? NewsProducts { get; set; }
         public DbSet<ShoppingCart>? ShoppingCarts { get; set; }
         public DbSet<ProductCart>? ProductCarts { get; set; }
-        public DbSet<Model>? Models { get; set; }
+        public DbSet<Brand>? Brands { get; set; }
     }
 }
 // Migration Commands *Packet Manager*
