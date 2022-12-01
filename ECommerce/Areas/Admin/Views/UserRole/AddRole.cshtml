@@ -1,0 +1,17 @@
+﻿@using ECommerce.Areas.Admin.Models
+@model RoleViewModel
+@{
+    ViewData["Title"] = "AddRole";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout/AdminLayout.cshtml";
+}
+
+<h1>Add Role</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label>Role Name</label>
+        <input type="text" name="name" class="form-control" />
+    </div>
+
+    <button class="btn btn-info">Save</button>
+</form>

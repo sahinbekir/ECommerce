@@ -1,0 +1,63 @@
+﻿@using EntityLayer.Concrete
+@model List<AppRole>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout/AdminLayout.cshtml";
+}
+
+<body>
+    <div class="wrapper wrapper-content animated fadeInRight">
+
+        <div class="row">
+
+            <div class="col-lg-12">
+                <div class="ibox ">
+                    <div class="ibox-title">
+                        <h5>All Roles List  </h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+
+
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Role Title</th>
+                                    <th>Update</th>
+                                    <th>Delete</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <th>@item.Id</th>
+                                        <td>@item.Name</td>
+
+
+                                        <td style="text-align:center;"><a href="/Admin/UserRole/UpdateRole/@item.Id" class="btn btn-warning">Update</a></td>
+
+                                        <td style="text-align:center;"><a href="/Admin/UserRole/DeleteRole/@item.Id" class="btn btn-danger">Delete</a></td>
+                                    </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+                        <a href="/Admin/UserRole/AddRole/" class="btn btn-primary">Add Role</a>
+                        <a href="/Admin/UserRole/UserRoleList/" class="btn btn-info">User Role List</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+

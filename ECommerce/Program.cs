@@ -62,7 +62,7 @@ app.UseRouting();
 app.UseAuthorization();
 app.MapControllerRoute(
     name: "areas",
-    pattern: "{area:exists}/{controller=SignInUser}/{action=Index}/{id?}");
+    pattern: "{area:exists}/{controller=UserRole}/{action=Index}/{id?}");
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Product}/{action=Index}/{id?}");
