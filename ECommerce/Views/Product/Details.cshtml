@@ -21,7 +21,9 @@
                                 <br />
                                 <div>
                                     <a href="/Product/Details/@item.Id">
-                                        <img src="@item.ThumbnailImgUrl" class="card-img-top img-fluid" alt="">
+                                        <video src="@item.MovieUrl" controls>
+                                            Your browser does not support this video...
+                                        </video>
                                     </a>
                                 </div>
 
@@ -61,9 +63,9 @@
                 </div>
                 <div class="ibox-footer">
                     <span class="float-right">
-                        Full stock - <i class="fa fa-clock-o"></i> @item.CreateDate
+                        Full stock - <i class="fa fa-clock-o"></i> @item.CreatedDate
                     </span>
-                    @item.Status
+                    @item.IsDeleted
                 </div>
             </div>
 

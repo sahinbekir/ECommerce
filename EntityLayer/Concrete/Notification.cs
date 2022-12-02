@@ -14,7 +14,8 @@ namespace EntityLayer.Concrete
         public string? Type { get; set; }
         public string? Title { get; set; }
         public string? Detail { get; set; }
-        public DateTime PostDate { get; set; }
-        public bool Status { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public DateTime? UpdatedDate { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

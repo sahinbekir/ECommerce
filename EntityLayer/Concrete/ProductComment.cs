@@ -12,12 +12,14 @@ namespace EntityLayer.Concrete
     {
         [Key]
         public int Id { get; set; }
-        public int UserId { get; set; }// public AppUser? User { get; set; }
-        public int ProductId { get; set; }// public Product? Product { get; set; }
+        public int UserId { get; set; }
+        public int ProductId { get; set; }
+        public Product? Product { get; set; }
         public string? CommentTitle { get; set; }
         public string? CommentContent { get; set; }
         public int Score { get; set; }
-        public DateTime CreateDate { get; set; }
-        public bool Status { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public DateTime? UpdatedDate { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

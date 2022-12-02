@@ -9,6 +9,6 @@ namespace EntityLayer.Concrete
 {
     public class AppRole : IdentityRole<int>
     {
-
+        // Extra Properties For Identity Roles Table.
     }
 }

@@ -33,17 +33,17 @@ namespace BusinessLayer.Concrete
 
         public void TAdd(Product t)
         {
-            throw new NotImplementedException();
+            _productDal.Insert(t);
         }
 
         public void TDelete(Product t)
         {
-            throw new NotImplementedException();
+            _productDal.Delete(t);
         }
 
         public void TUpdate(Product t)
         {
-            throw new NotImplementedException();
+            _productDal.Update(t);
         }
     }
 }

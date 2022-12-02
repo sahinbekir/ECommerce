@@ -15,8 +15,9 @@ namespace EntityLayer.Concrete
         public int MessageReceiver { get; set; }
         public string? Subject { get; set; }
         public string? Context { get; set; }
-        public DateTime PostDate { get; set; }
-        public bool Status { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public DateTime? UpdatedDate { get; set; }
+        public bool IsDeleted { get; set; }
         public AppUser? SenderUser { get; set; }
         public AppUser? ReceiverUser { get; set; }
     }

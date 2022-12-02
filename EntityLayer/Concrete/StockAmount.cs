@@ -11,8 +11,12 @@ namespace EntityLayer.Concrete
     {
         [Key]
         public int Id { get; set; }
-        public int ProductId { get; set; }// public Product? Product { get; set; }
+        public int ProductId { get; set; }
+        public Product? Product { get; set; }
         public int StockScore { get; set; }
         public int SoldScore { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public DateTime? UpdatedDate { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

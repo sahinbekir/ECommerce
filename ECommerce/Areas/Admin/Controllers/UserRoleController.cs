@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace ECommerce.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class UserRoleController : Controller
     {
         private readonly RoleManager<AppRole> _roleManager;
@@ -126,6 +127,6 @@ namespace ECommerce.Areas.Admin.Controllers
             }
             return RedirectToAction("UserRoleList");
         }
-        
+
     }
 }

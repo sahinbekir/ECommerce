@@ -35,10 +35,6 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\User\Data\" />
-    <Folder Include="wwwroot\Media\" />
-    <Folder Include="wwwroot\Media\ProductMovieFiles\" />
-    <Folder Include="wwwroot\Media\ProductImageFiles\" />
-    <Folder Include="wwwroot\Media\UserImageFiles\" />
   </ItemGroup>
 
 </Project>

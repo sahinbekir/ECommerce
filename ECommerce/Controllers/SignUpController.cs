@@ -3,6 +3,7 @@ using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace ECommerce.Controllers
 {
@@ -21,7 +22,7 @@ namespace ECommerce.Controllers
             return View();
         }
 
-        
+
         [HttpPost]
         public async Task<IActionResult> Index(SignUpViewModel p)
         {
@@ -31,6 +32,7 @@ namespace ECommerce.Controllers
                 AppUser user = new AppUser();
                 if (p.ImageUrl != null)
                 {
+                    //user.ImageUrl = "Loop"; Dont come here...???
                     var extension = Path.GetExtension(p.ImageUrl.FileName);
                     var newimagename = Guid.NewGuid() + extension;
                     var location = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Media/UserImageFiles/", newimagename);
@@ -40,16 +42,15 @@ namespace ECommerce.Controllers
 
                 }
                 user.Email = p.Email;
-                    user.UserName = p.UserName;
-                    user.FullName = p.FullName;
-                    user.PhoneNumber = p.PhoneNumber;
-                    //user.ImageUrl = p.ImageUrl;
-                    user.BornDate = p.BornDate;
-                    user.City = p.City;
-                    user.Village = p.Village;
-                    user.Address = p.Address;
-                user.RegisterDate=DateTime.Now;
-                
+                user.UserName = p.UserName;
+                user.FullName = p.FullName;
+                user.PhoneNumber = p.PhoneNumber;
+                user.BornDate = p.BornDate;
+                user.CityId = p.CityId;
+                user.Village = p.Village;
+                user.Address = p.Address;
+                user.RegisterDate = DateTime.Now;
+
                 var result = await _userManager.CreateAsync(user, p.Password);
                 if (result.Succeeded)
                 {

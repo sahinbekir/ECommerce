@@ -35,9 +35,9 @@ namespace ECommerce.Models
         [Display(Name = "Address")]
         [Required(ErrorMessage = "Please valid Address")]
         public string Address { get; set; }
-        [Display(Name = "City")]
+        [Display(Name = "CityId")]
         [Required(ErrorMessage = "Please valid City")]
-        public string City { get; set; }
+        public int CityId { get; set; }
         [Display(Name = "Village")]
         [Required(ErrorMessage = "Please valid Village")]
         public string Village { get; set; }

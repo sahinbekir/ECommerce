@@ -43,6 +43,9 @@ namespace DataAccessLayer.Concrete
         public DbSet<ShoppingCart>? ShoppingCarts { get; set; }
         public DbSet<ProductCart>? ProductCarts { get; set; }
         public DbSet<Brand>? Brands { get; set; }
+        public DbSet<City>? Cities { get; set; }
+        public DbSet<AboutUs>? AboutUss { get; set; }
+        public DbSet<ContactUs>? ContactUss { get; set; }
     }
 }
 // Migration Commands *Packet Manager*
@@ -72,7 +75,7 @@ As
 Declare @ID int
 Declare @Score int
 Declare @RaitingCount int
-Select @ID=Id, @Score=ProductScore from inserted
+Select @ID=ProductId, @Score=Score from inserted
 Update ProductRatings Set TotalScore=TotalScore+@Score, RatingCount+=1
 Where ProductId=@ID
 */
