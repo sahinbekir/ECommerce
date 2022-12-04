@@ -29,8 +29,8 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Role Title</th>
-                                    <th>Update</th>
-                                    <th>Delete</th>
+                                    <th style="text-align:center;">Update</th>
+                                    <th style="text-align:center;">Delete</th>
 
                                 </tr>
                             </thead>
@@ -40,10 +40,7 @@
                                     <tr>
                                         <th>@item.Id</th>
                                         <td>@item.Name</td>
-
-
                                         <td style="text-align:center;"><a href="/Admin/UserRole/UpdateRole/@item.Id" class="btn btn-warning">Update</a></td>
-
                                         <td style="text-align:center;"><a href="/Admin/UserRole/DeleteRole/@item.Id" class="btn btn-danger">Delete</a></td>
                                     </tr>
                                 }

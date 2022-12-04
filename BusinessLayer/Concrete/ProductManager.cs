@@ -19,7 +19,7 @@ namespace BusinessLayer.Concrete
         }
         public List<Product> GetProductById(int id)
         {
-            return _productDal.GetList(x => x.Id == id);
+            return _productDal.GetListWithCBU().Where(a=>a.Id==id).ToList();
         }
         public Product GetById(int id)
         {
@@ -44,6 +44,26 @@ namespace BusinessLayer.Concrete
         public void TUpdate(Product t)
         {
             _productDal.Update(t);
+        }
+
+        public List<Product> GetProductListWithCBU()
+        {
+            return _productDal.GetListWithCBU();
+        }
+
+        public List<Product> GetBestSellerProductsList()
+        {
+            return _productDal.GetListWithCBU().Take(1).ToList();
+        }
+
+        public List<Product> GetLatestProductsList()
+        {
+            return _productDal.GetListWithCBU().OrderBy(x=>x.CreatedDate).Take(2).ToList();
+        }
+
+        public List<Product> GetHighestPerformingProductsList()
+        {
+            return _productDal.GetListWithCBU().Take(1).ToList();
         }
     }
 }

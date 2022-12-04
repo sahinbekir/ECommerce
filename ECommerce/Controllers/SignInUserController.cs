@@ -27,7 +27,7 @@ namespace ECommerce.Controllers
                 if (result.Succeeded)
                 {
                     
-                        return RedirectToAction("MyProduct", "User");
+                        return RedirectToAction("Index", "UserDashboard");
                     
                 }
                 else

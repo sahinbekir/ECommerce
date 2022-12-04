@@ -28,7 +28,7 @@ namespace ECommerce.Controllers
                 if (result.Succeeded)
                 {
 
-                    return RedirectToAction("UserRole", "Admin");
+                    return RedirectToAction("Index", "AdminDashboard");
 
                 }
                 else

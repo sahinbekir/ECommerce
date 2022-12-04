@@ -1,8 +1,11 @@
-﻿using ECommerce.Models;
+﻿using BusinessLayer.Concrete;
+using DataAccessLayer.EntityFramework;
+using ECommerce.Models;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 
 namespace ECommerce.Controllers
@@ -19,6 +22,14 @@ namespace ECommerce.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+            CityManager cm = new CityManager(new EfCityRepository());
+            List<SelectListItem> cityvalues = (from x in cm.GetListAll()
+                                                select new SelectListItem
+                                                {
+                                                    Text = x.Name,
+                                                    Value = x.Id.ToString()
+                                                }).ToList();
+            ViewBag.cv = cityvalues;
             return View();
         }
 
@@ -32,13 +43,12 @@ namespace ECommerce.Controllers
                 AppUser user = new AppUser();
                 if (p.ImageUrl != null)
                 {
-                    //user.ImageUrl = "Loop"; Dont come here...???
                     var extension = Path.GetExtension(p.ImageUrl.FileName);
                     var newimagename = Guid.NewGuid() + extension;
                     var location = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Media/UserImageFiles/", newimagename);
                     var stream = new FileStream(location, FileMode.Create);
                     p.ImageUrl.CopyTo(stream);
-                    user.ImageUrl = newimagename;
+                    user.ImageUrl = "/Media/UserImageFiles/" + newimagename;
 
                 }
                 user.Email = p.Email;

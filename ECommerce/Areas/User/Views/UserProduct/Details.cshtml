@@ -1,0 +1,75 @@
+﻿@model IEnumerable<EntityLayer.Concrete.Product>
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/User/Views/Shared/UserLayout/UserLayout.cshtml";
+}
+
+
+
+@foreach (var item in Model)
+{
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox product-detail">
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="product-images">
+                                <div>
+                                    <a href="/Product/Details/@item.Id">
+                                        <img src="@item.ImageUrl" class="card-img-top img-fluid" alt="">
+                                </div>
+                                <br />
+                                <div>
+                                    <a href="/Product/Details/@item.Id">
+                                        <video src="@item.MovieUrl" controls>
+                                            Your browser does not support this video...
+                                        </video>
+                                    </a>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                        <div class="col-md-7">
+
+                            <h2 class="font-bold m-b-xs">
+                                @item.Name
+                            </h2>
+                            <small>@item.SubCategoryId - @item.Version - @item.UserId</small>
+                            <div class="m-t-md">
+                                <h2 class="product-main-price">$@item.Cost <small class="text-muted">Exclude Tax</small> </h2>
+                            </div>
+                            <hr>
+
+                            <h4>Product Description</h4>
+
+                            @item.Description
+                            <hr>
+
+                            <div>
+                                <div class="btn-group">
+                                    <button class="btn btn-primary btn-sm"><i class="fa fa-cart-plus"></i> Add to cart</button>
+                                    <button class="btn btn-white btn-sm"><i class="fa fa-star"></i> Add to wishlist news </button>
+                                    <button class="btn btn-white btn-sm"><i class="fa fa-envelope"></i> Contact with owner </button>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="ibox-footer">
+                    <span class="float-right">
+                        Full stock - <i class="fa fa-clock-o"></i> @item.CreatedDate
+                    </span>
+                    @item.IsDeleted
+                </div>
+            </div>
+
+        </div>
+    </div>
+}

@@ -35,62 +35,64 @@
             </div>
             <h3>Register to E-Commerce</h3>
             <p>Create account to see it in action.</p>
-            <form class="m-t" role="form" asp-action="Index">
-                <div class="form-group">
-                    <span asp-validation-for="@Model.FullName" class="text-danger"></span>
-                    <input type="text" class="form-control" placeholder=" FullName" asp-for="@Model.FullName">
-                </div>
-                <div class="form-group">
-                    <span asp-validation-for="@Model.Email" class="text-danger"></span>
-                    <input type="email" class="form-control" placeholder=" Email" asp-for="@Model.Email">
-                </div>
-                <div class="form-group">
-                    <span asp-validation-for="@Model.PhoneNumber" class="text-danger"></span>
-                    <input type="text" class="form-control" placeholder=" Phone" asp-for="@Model.PhoneNumber">
-                </div>
-                <div class="form-group">
-                    <span asp-validation-for="@Model.ImageUrl" class="text-danger"></span>
-                    <input type="file" asp-for="@Model.ImageUrl" >
-                </div>
-                <div class="form-group">
-                    <span asp-validation-for="@Model.UserName" class="text-danger"></span>
-                    <input type="text" class="form-control" placeholder=" Username" asp-for="@Model.UserName" >
-                </div>
-                <div class="form-group">
-                    <span asp-validation-for="@Model.CityId" class="text-danger"></span>
-                    <input type="text" class="form-control" placeholder=" Adress" asp-for="@Model.CityId">
-                </div>
-                <div class="form-group">
-                    <span asp-validation-for="@Model.Village" class="text-danger"></span>
-                    <input type="text" class="form-control" placeholder=" Village" asp-for="@Model.Village">
-                </div>
-                <div class="form-group">
-                    <span asp-validation-for="@Model.Address" class="text-danger"></span>
-                    <input type="text" class="form-control" placeholder=" Address" asp-for="@Model.Address">
-                </div>
-                <div class="form-group">
-                    <span asp-validation-for="@Model.BornDate" class="text-danger"></span>
-                    <input type="date" class="form-control" placeholder=" BornDate" asp-for="@Model.BornDate">
-                </div>
-                <div class="form-group">
-                    <span asp-validation-for="@Model.Password" class="text-danger"></span>
-                    <input type="password" class="form-control" placeholder=" Password" asp-for="@Model.Password">
-                </div>
-                <div class="form-group">
-                    <span asp-validation-for="@Model.ConfirmPassword" class="text-danger"></span>
-                    <input type="password" class="form-control" placeholder=" confirm Password" asp-for="@Model.ConfirmPassword">
-                </div>
-                <div class="form-group">
+            <form class="form-group" method="post" enctype="multipart/form-data">
+                <div class="col-12 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <div class="forms-sample">
+                                <div class="form-group">
+                                    <label for="exampleInputName1">Full Name</label>
+                                    @Html.TextBoxFor(x=>x.FullName, new {@class="form-control"})
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputName1">Email</label>
+                                    @Html.TextBoxFor(x=>x.Email, new {@class="form-control"})
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputName1">Phone</label>
+                                    @Html.TextBoxFor(x=>x.PhoneNumber, new {@class="form-control"})
+                                </div>
+                                <div class="form-group">
+                                    <label>Profile photo upload</label>
+                                    <input type="file" name="ImageUrl" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputName1">UserName</label>
+                                    @Html.TextBoxFor(x=>x.UserName, new {@class="form-control"})
+                                </div>
+                                @Html.DropDownListFor(x=>x.CityId,(List<SelectListItem>)ViewBag.cv,new {@class="form-control"})
+                                <div class="form-group">
+                                    <label for="exampleInputName1">Village</label>
+                                    @Html.TextBoxFor(x=>x.Village, new {@class="form-control"})
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputName1">Address</label>
+                                    @Html.TextBoxFor(x=>x.Address, new {@class="form-control"})
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="exampleInputName1">Born Date</label>
+                                    <input type="date" value="BornDate" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputName1">Password</label>
+                                    @Html.TextBoxFor(x=>x.Password, new {@class="form-control"})
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputName1">Confirm Password</label>
+                                    @Html.TextBoxFor(x=>x.ConfirmPassword, new {@class="form-control"})
+                                </div>
+                                <div class="form-group">
                     <p>
                         <a href="#" id="btninfo">By clicking Signup, I agree to your terms</a>
                     </p>
                 </div>
-                <button type="submit" class="btn btn-primary block full-width m-b">Register</button>
-
-                <p class="text-muted text-center"><small>Already have an account?</small></p>
-                <a class="btn btn-sm btn-white btn-block" href="/SignInUser/Index">Login</a>
-                <div class="text-danger" asp-validation-summary="ModelOnly">
-
+                                <button type="submit" class="btn btn-gradient-primary mr-2">Register</button>
+                                <button class="btn btn-light">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </form>
             <p class="m-t"> <small>E-Commerce &copy; @DateTime.Now.Year</small> </p>
@@ -108,7 +110,7 @@
     <!-- iCheck -->
     <script src="~/GuestTemplate/js/plugins/iCheck/icheck.min.js"></script>
     <script>
-        $(document).ready(function(){
+        $(document).ready(function () {
             $('.i-checks').iCheck({
                 checkboxClass: 'icheckbox_square-green',
                 radioClass: 'iradio_square-green',

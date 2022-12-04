@@ -1,0 +1,20 @@
+﻿@using EntityLayer.Concrete
+@model Category
+@{
+    ViewData["Title"] = "AddCategory";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout/AdminLayout.cshtml";
+}
+
+<h1>Add Category</h1>
+<form method="post">
+    <div class="form-group">
+        <label>Category Name</label>
+        <input type="text" name="Name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Category Description</label>
+        <textarea name="Description" rows="2" class="form-control" placeholder="Category Description"></textarea>
+    </div>
+
+    <button class="btn btn-info">Save</button>
+</form>

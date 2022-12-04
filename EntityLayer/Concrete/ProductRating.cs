@@ -14,8 +14,8 @@ namespace EntityLayer.Concrete
         public int ProductId { get; set; }
         public int TotalScore { get; set; }
         public int RatingCount { get; set; }
-        public DateTime CreatedDate { get; set; }
+        public DateTime? CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
-        public bool IsDeleted { get; set; }
+        public bool? IsDeleted { get; set; }
     }
 }

@@ -25,22 +25,26 @@ namespace ECommerce.Models
         [Required(ErrorMessage = "Please valid Username")]
         public string UserName { get; set; }
 
-        //[Display(Name = "ImgUrl")]
-        //[Required(ErrorMessage = "Please valid ImgUrl")]
-        public IFormFile? ImageUrl { get; set; }
+        [Display(Name = "ImgUrl")]
+        [Required(ErrorMessage = "Please valid ImgUrl")]
+        public IFormFile ImageUrl { get; set; }
 
         [Display(Name = "PhoneNumber")]
         [Required(ErrorMessage = "Please valid PhoneNumber")]
         public string PhoneNumber { get; set; }
-        [Display(Name = "Address")]
-        [Required(ErrorMessage = "Please valid Address")]
-        public string Address { get; set; }
-        [Display(Name = "CityId")]
+
+        [Display(Name = "City")]
         [Required(ErrorMessage = "Please valid City")]
         public int CityId { get; set; }
+
         [Display(Name = "Village")]
         [Required(ErrorMessage = "Please valid Village")]
         public string Village { get; set; }
+
+        [Display(Name = "Address")]
+        [Required(ErrorMessage = "Please valid Address")]
+        public string Address { get; set; }
+
         [Display(Name = "BornDate")]
         [Required(ErrorMessage = "Please valid BornDate")]
         public DateTime BornDate { get; set; }

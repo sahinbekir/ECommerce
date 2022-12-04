@@ -1,0 +1,41 @@
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model IPagedList<EntityLayer.Concrete.Product>
+@{
+    ViewData["Title"] = "MyProduct";
+    Layout = "~/Areas/User/Views/Shared/UserLayout/UserLayout.cshtml";
+}
+
+<h1>My Products</h1>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3">
+                <div class="ibox">
+                    <div class="ibox-content product-box">
+                        <a href="/User/UserProduct/Details/@item.Id">
+                            <img src="@item.ThumbnailImgUrl" class="card-img-top img-fluid" alt="">
+                        </a>
+                        <div class="product-desc">
+                            <span class="product-price">
+                                $@item.Cost
+                            </span>
+                            <small class="text-muted">@item.SubCategoryId</small>
+                            <a href="/User/UserProduct/Details/@item.Id" class="product-name"> @item.Name</a>
+                            <div class="small m-t-xs">
+                                @item.Description
+                            </div>
+                            <div class="m-t text-righ">
+                                <a href="/User/UserProduct/Details/@item.Id" class="btn btn-xs btn-outline btn-primary">Info <i class="fa fa-long-arrow-right">Read More</i> </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new {page}))
+</div>
