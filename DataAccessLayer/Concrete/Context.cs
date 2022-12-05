@@ -65,10 +65,10 @@ After Insert
 As
 Declare @ID int
 Select @ID=Id from inserted
-Insert Into ProductRatings (ProductId,TotalScore,RatingCount)
-Values (@ID,0,0)
-*/
+Insert Into ProductRatings (ProductId,TotalScore,RatingCount,CreatedDate,UpdatedDate,IsDeleted)
+Values (@ID,0,0,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,0)
 
+*/
 /*
 Create Trigger AddScoreInProductComment
 On ProductComments
@@ -78,6 +78,6 @@ Declare @ID int
 Declare @Score int
 Declare @RaitingCount int
 Select @ID=ProductId, @Score=Score from inserted
-Update ProductRatings Set TotalScore=TotalScore+@Score, RatingCount+=1
+Update ProductRatings Set TotalScore=TotalScore+@Score, RatingCount+=1, CreatedDate=CreatedDate,UpdatedDate=CURRENT_TIMESTAMP,IsDeleted=0
 Where ProductId=@ID
 */
