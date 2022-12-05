@@ -26,6 +26,11 @@ namespace BusinessLayer.Concrete
             return _subCategoryDal.GetList();
         }
 
+        public List<SubCategory> GetSubCategoryListWithCategory()
+        {
+            return _subCategoryDal.GetListWithCategory();
+        }
+
         public void TAdd(SubCategory t)
         {
             _subCategoryDal.Insert(t);

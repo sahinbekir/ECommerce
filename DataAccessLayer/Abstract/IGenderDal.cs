@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Abstract
 {
-    public interface ISubCategoryDal : IGenericDal<SubCategory>
+    public interface IGenderDal : IGenericDal<Gender>
     {
-        List<SubCategory> GetListWithCategory();
     }
 }

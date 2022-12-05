@@ -2,6 +2,7 @@
 using DataAccessLayer.EntityFramework;
 using ECommerce.Models;
 using EntityLayer.Concrete;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -22,6 +23,15 @@ namespace ECommerce.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+            /*
+            GenderManager gv = new GenderManager(new EfGenderRepository());
+            List<SelectListItem> gendervalues = (from x in gv.GetListAll()
+                                                 select new SelectListItem
+                                                 {
+                                                     Text = x.Name,
+                                                     Value = x.Id.ToString()
+                                                 }).ToList();
+            ViewBag.gv = gendervalues;
             CityManager cm = new CityManager(new EfCityRepository());
             List<SelectListItem> cityvalues = (from x in cm.GetListAll()
                                                 select new SelectListItem
@@ -30,42 +40,35 @@ namespace ECommerce.Controllers
                                                     Value = x.Id.ToString()
                                                 }).ToList();
             ViewBag.cv = cityvalues;
+             */
             return View();
         }
 
 
         [HttpPost]
-        public async Task<IActionResult> Index(SignUpViewModel p)
+        public async Task<IActionResult> Index(SignUpViewModel model)
         {
             if (ModelState.IsValid)
             {
-
                 AppUser user = new AppUser();
-                if (p.ImageUrl != null)
-                {
-                    var extension = Path.GetExtension(p.ImageUrl.FileName);
-                    var newimagename = Guid.NewGuid() + extension;
-                    var location = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Media/UserImageFiles/", newimagename);
-                    var stream = new FileStream(location, FileMode.Create);
-                    p.ImageUrl.CopyTo(stream);
-                    user.ImageUrl = "/Media/UserImageFiles/" + newimagename;
-
-                }
-                user.Email = p.Email;
-                user.UserName = p.UserName;
-                user.FullName = p.FullName;
-                user.PhoneNumber = p.PhoneNumber;
-                user.BornDate = p.BornDate;
-                user.CityId = p.CityId;
-                user.Village = p.Village;
-                user.Address = p.Address;
+                user.Email = model.Email;
+                user.UserName = model.UserName;
+                user.FullName = model.FullName;
+                user.PhoneNumber = model.PhoneNumber;
+                user.BornDate = model.BornDate;
+                user.CityId = 1;
+                user.VillageId = 1;
+                user.Address = "";
+                user.GenderId = 1;
+                user.ImageUrl = "/Media/ecpp.png";
                 user.RegisterDate = DateTime.Now;
-
-                var result = await _userManager.CreateAsync(user, p.Password);
+                user.ProfileUpdatedDate = DateTime.Now;
+                user.IsBlocked = false;
+                user.IsDeleted = false;
+                var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     return RedirectToAction("Index", "SignInUser");
-
                 }
                 else
                 {
@@ -75,8 +78,7 @@ namespace ECommerce.Controllers
                     }
                 }
             }
-
-            return View(p);
+            return View(model);
         }
     }
 }

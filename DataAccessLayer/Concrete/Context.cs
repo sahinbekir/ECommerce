@@ -46,6 +46,8 @@ namespace DataAccessLayer.Concrete
         public DbSet<City>? Cities { get; set; }
         public DbSet<AboutUs>? AboutUss { get; set; }
         public DbSet<ContactUs>? ContactUss { get; set; }
+        public DbSet<Gender>? Genders { get; set; }
+        public DbSet<Village>? Villages { get; set; }
     }
 }
 // Migration Commands *Packet Manager*

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 
 namespace ECommerce.Models
@@ -15,38 +16,26 @@ namespace ECommerce.Models
 
         [Display(Name = "ConfirmPassword")]
         [Compare("Password", ErrorMessage = "Not Same Password")]
-        public string ConfirmPassword { get; set; }
+        public string ConfirmedPassword { get; set; }
 
         [Display(Name = "Mail")]
         [Required(ErrorMessage = "Please valid Mail")]
         public string Email { get; set; }
 
+        [Display(Name = "ConfirmedEmail")]
+        [Compare("Email", ErrorMessage = "Not Same Email")]
+        public string ConfirmedEmail { get; set; }
+
         [Display(Name = "Username")]
         [Required(ErrorMessage = "Please valid Username")]
         public string UserName { get; set; }
-
-        [Display(Name = "ImgUrl")]
-        [Required(ErrorMessage = "Please valid ImgUrl")]
-        public IFormFile ImageUrl { get; set; }
 
         [Display(Name = "PhoneNumber")]
         [Required(ErrorMessage = "Please valid PhoneNumber")]
         public string PhoneNumber { get; set; }
 
-        [Display(Name = "City")]
-        [Required(ErrorMessage = "Please valid City")]
-        public int CityId { get; set; }
-
-        [Display(Name = "Village")]
-        [Required(ErrorMessage = "Please valid Village")]
-        public string Village { get; set; }
-
-        [Display(Name = "Address")]
-        [Required(ErrorMessage = "Please valid Address")]
-        public string Address { get; set; }
-
         [Display(Name = "BornDate")]
-        [Required(ErrorMessage = "Please valid BornDate")]
+        [Required(ErrorMessage = "Please valid Born Date")]
         public DateTime BornDate { get; set; }
     }
 }

@@ -5,10 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccessLayer.Abstract
+namespace BusinessLayer.Abstract
 {
-    public interface ISubCategoryDal : IGenericDal<SubCategory>
+    public interface IVillageService : IGenericService<Village>
     {
-        List<SubCategory> GetListWithCategory();
     }
 }
