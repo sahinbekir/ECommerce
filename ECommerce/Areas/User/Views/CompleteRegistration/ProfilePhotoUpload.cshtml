@@ -1,0 +1,35 @@
+﻿@model ECommerce.Areas.User.Models.ProfilePhotoViewModel
+@{
+    ViewData["Title"] = "ProfilePhotoUpload";
+    Layout = "~/Areas/User/Views/Shared/UserLayout/UserLayout.cshtml";
+}
+<div class="mail-box-header">
+    <h1 style="text-align:center;"><strong>Lastly Step For Complete</strong></h1>
+</div>
+<form class="form-group" method="post" enctype="multipart/form-data">
+
+    <div class="mail-body">
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Profile Photo Upload:</label>
+            <div class="col-sm-10"><input type="file" name="ProfilePhoto" /></div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Open Address:</label>
+            <div class="col-sm-10">
+                <textarea type="text" class="form-control" name="Address" rows="2" placeholder="Write Your open address here..."></textarea>
+            </div>
+        </div>
+        <div class="mail-body text-right tooltip-demo">
+            <a href="/User/CompleteRegistration/Index/" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Return to previous page"><i class="fa fa-reply"></i> Go Back!</a>
+            <button class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top" title="Send"><i class="fa fa-share"></i> Save</button>
+        </div>
+
+    </div>
+    <div class="clearfix"></div>
+
+</form>
+
+
+
+
+

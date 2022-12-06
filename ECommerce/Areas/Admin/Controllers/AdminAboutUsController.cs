@@ -1,16 +1,19 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using BusinessLayer.Concrete;
+using DataAccessLayer.EntityFramework;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.Areas.Admin.Controllers
 {
+    [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class AdminAboutUsController : Controller
     {
-        [Area("Admin")]
-        [Authorize(Roles = "Admin")]
-        //add list del update
+        AboutUsManager aum = new AboutUsManager(new EfAboutUsRepository());
         public IActionResult Index()
         {
-            return View();
+            var values = aum.GetListAll();
+            return View(values);
         }
     }
 }

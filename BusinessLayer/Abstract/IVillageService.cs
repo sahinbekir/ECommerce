@@ -9,5 +9,6 @@ namespace BusinessLayer.Abstract
 {
     public interface IVillageService : IGenericService<Village>
     {
+        /*List<Village> GetVillageListWithCity();*/
     }
 }

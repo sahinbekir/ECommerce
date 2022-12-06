@@ -15,32 +15,16 @@ namespace ECommerce.Controllers
     public class SignUpController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
-
-        public SignUpController(UserManager<AppUser> userManager)
+        private readonly SignInManager<AppUser> _signInManager;
+        public SignUpController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
         {
             _userManager = userManager;
+            _signInManager = signInManager;
         }
+
         [HttpGet]
         public IActionResult Index()
         {
-            /*
-            GenderManager gv = new GenderManager(new EfGenderRepository());
-            List<SelectListItem> gendervalues = (from x in gv.GetListAll()
-                                                 select new SelectListItem
-                                                 {
-                                                     Text = x.Name,
-                                                     Value = x.Id.ToString()
-                                                 }).ToList();
-            ViewBag.gv = gendervalues;
-            CityManager cm = new CityManager(new EfCityRepository());
-            List<SelectListItem> cityvalues = (from x in cm.GetListAll()
-                                                select new SelectListItem
-                                                {
-                                                    Text = x.Name,
-                                                    Value = x.Id.ToString()
-                                                }).ToList();
-            ViewBag.cv = cityvalues;
-             */
             return View();
         }
 
@@ -68,7 +52,14 @@ namespace ECommerce.Controllers
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "SignInUser");
+                    var signupuser = _userManager.Users.FirstOrDefault(x => x.UserName == user.UserName);
+                    await _userManager.AddToRoleAsync(signupuser, "USER");
+                    var firstsignin = await _signInManager.PasswordSignInAsync(signupuser.UserName, model.Password, false, true);
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction("CompleteRegistration", "User");
+
+                    }
                 }
                 else
                 {

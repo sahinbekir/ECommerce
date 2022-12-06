@@ -1,9 +1,15 @@
 ﻿@using EntityLayer.Concrete
-@model List<ContactUs>
+@model List<Notification>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/AdminLayout/AdminLayout.cshtml";
 }
+
+
+
+
+
+
 
 
 <body>
@@ -14,7 +20,7 @@
             <div class="col-lg-12">
                 <div class="ibox ">
                     <div class="ibox-title">
-                        <h5 style="text-align:center;">All Contact Message List  </h5>
+                        <h5 style="text-align:center;">All Notification List  </h5>
                         <div class="ibox-tools">
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
@@ -29,16 +35,14 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Contact UserName</th>
-                                    <th>Contact Mail</th>
-                                    <th>Contact Subject</th>
-                                    <th>Contact Context</th>
-                                    <th>Contact Created Date</th>
-                                    <th>Contact Updated Date</th>
+                                    <th>Notification Type</th>
+                                    <th>Notification Title</th>
+                                    <th>Notification Detail</th>
+                                    <th>Notification Created Date</th>
+                                    <th>Notification Updated Date</th>
                                     <th>Is Inactive?</th>
                                     <th style="text-align:center;">Update</th>
                                     <th style="text-align:center;">Delete</th>
-
                                 </tr>
                             </thead>
                             <tbody>
@@ -46,20 +50,21 @@
                                 {
                                     <tr>
                                         <th>@item.Id</th>
-                                        <td>@item.UserName</td>
-                                        <td>@item.Mail</td>
-                                        <td>@item.Subject</td>
-                                        <td>@item.Context</td>
+                                        <td>@item.Type</td>
+                                        <td>@item.Title</td>
+                                        <td>@item.Detail</td>
                                         <td>@item.CreatedDate</td>
                                         <td>@item.UpdatedDate</td>
                                         <td>@item.IsDeleted</td>
-                                        <td style="text-align:center;"><a href="/Admin/AdminContactUs/DeleteContact/@item.Id" class="btn btn-danger">Check Status</a></td>
+                                        <td style="text-align:center;"><a href="/Admin/Notification/UpdateNotification/@item.Id" class="btn btn-warning">Update</a></td>
+                                        <td style="text-align:center;"><a href="/Admin/Notification/DeleteNotification/@item.Id" class="btn btn-danger">Delete</a></td>
                                     </tr>
                                 }
 
 
                             </tbody>
                         </table>
+                        <a href="/Admin/Notification/AddNotification/" class="btn btn-primary">Add Notification</a>
                     </div>
                 </div>
             </div>
@@ -67,7 +72,3 @@
 
     </div>
 </body>
-
-
-
-

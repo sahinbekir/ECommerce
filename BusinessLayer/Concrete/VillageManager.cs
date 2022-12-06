@@ -26,7 +26,10 @@ namespace BusinessLayer.Concrete
         {
             return _villageDal.GetList();
         }
-
+        /*public List<Village> GetVillageListWithCity()
+        {
+            return _villageDal.GetListWithCity();
+        }*/
         public void TAdd(Village t)
         {
             _villageDal.Insert(t);

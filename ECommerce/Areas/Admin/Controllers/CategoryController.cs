@@ -10,11 +10,10 @@ namespace ECommerce.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Authorize(Roles = "Admin")]
-    //add  del update
     public class CategoryController : Controller
     {
         CategoryManager cm = new CategoryManager(new EfCategoryRepository());
-        SubCategoryManager scm = new SubCategoryManager(new EfSubCategoryRepository());
+        //SubCategoryManager scm = new SubCategoryManager(new EfSubCategoryRepository());
         public IActionResult Index()
         {
             var values = cm.GetListAll();

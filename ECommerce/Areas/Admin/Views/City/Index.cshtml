@@ -1,8 +1,63 @@
 ﻿
+@using EntityLayer.Concrete
+@model List<City>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/AdminLayout/AdminLayout.cshtml";
 }
 
-<h1>City List</h1>
+
+<body>
+    <div class="wrapper wrapper-content animated fadeInRight">
+
+        <div class="row">
+
+            <div class="col-lg-12">
+                <div class="ibox ">
+                    <div class="ibox-title">
+                        <h5>All City List  </h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+
+
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Category Name</th>
+                                    <th style="text-align:center;">Update</th>
+                                    <th style="text-align:center;">Delete</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <th>@item.Id</th>
+                                        <td>@item.Name</td>
+                                        <td style="text-align:center;"><a href="/Admin/City/UpdateCity/@item.Id" class="btn btn-warning">Update</a></td>
+                                        <td style="text-align:center;"><a href="/Admin/City/DeleteCity/@item.Id" class="btn btn-danger">Delete</a></td>
+                                    </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+                        <a href="/Admin/City/AddCity/" class="btn btn-primary">Add City</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+
 

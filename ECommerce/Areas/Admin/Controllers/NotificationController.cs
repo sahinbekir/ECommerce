@@ -8,45 +8,45 @@ namespace ECommerce.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Authorize(Roles = "Admin")]
-    public class BrandController : Controller
+    public class NotificationController : Controller
     {
-        BrandManager bm = new BrandManager(new EfBrandRepository());
+        NotificationManager nm = new NotificationManager(new EfNotificationRepository());
         public IActionResult Index()
         {
-            var values = bm.GetListAll();
+            var values = nm.GetListAll();
             return View(values);
         }
         [HttpGet]
-        public IActionResult AddBrand()
+        public IActionResult AddNotification()
         {
             return View();
         }
         [HttpPost]
-        public IActionResult AddBrand(Brand model)
+        public IActionResult AddNotification(Notification model)
         {
             model.CreatedDate = DateTime.Now;
             model.UpdatedDate = DateTime.Now;
             model.IsDeleted = false;
-            bm.TAdd(model);
-            return RedirectToAction("Index", "Brand");
+            nm.TAdd(model);
+            return RedirectToAction("Index", "Notification");
         }
         [HttpGet]
-        public IActionResult UpdateBrand(int id)
+        public IActionResult UpdateNotification(int id)
         {
-            var values = bm.GetById(id);
+            var values = nm.GetById(id);
             return View(values);
         }
         [HttpPost]
-        public IActionResult UpdateBrand(Brand model)
+        public IActionResult UpdateNotification(Notification model)
         {
             model.UpdatedDate = DateTime.Now;
-            bm.TUpdate(model);
-            return RedirectToAction("Index", "Brand");
+            nm.TUpdate(model);
+            return RedirectToAction("Index", "Notification");
         }
-        public IActionResult DeleteBrand(int id)
+        public IActionResult DeleteNotification(int id)
         {
 
-            var value = bm.GetById(id);
+            var value = nm.GetById(id);
             if (value.IsDeleted == true)
             {
                 value.IsDeleted = false;
@@ -55,8 +55,9 @@ namespace ECommerce.Areas.Admin.Controllers
             {
                 value.IsDeleted = true;
             }
-            bm.TUpdate(value);
-            return RedirectToAction("Index", "Brand");
+            value.UpdatedDate = DateTime.Now;
+            nm.TUpdate(value);
+            return RedirectToAction("Index", "Notification");
         }
     }
 }

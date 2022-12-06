@@ -1,0 +1,28 @@
+﻿@using EntityLayer.Concrete
+@model Village
+@{
+    ViewData["Title"] = "AddVillage";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout/AdminLayout.cshtml";
+}
+
+<h1>Add Village</h1>
+
+
+
+
+<form method="post">
+    <!--<div class="form-group">
+        <label>City Name</label>
+        Html.DropDownListFor(x=>x.CityId,(List<SelectListItem>)ViewBag.cv,new {class="form-control"})
+    </div>-->
+    <div class="form-group">
+        <label>City Plate</label>
+        <input type="text" name="CityId" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Village Name</label>
+        <input type="text" name="Name" class="form-control" />
+    </div>
+
+    <button class="btn btn-info">Save</button>
+</form>

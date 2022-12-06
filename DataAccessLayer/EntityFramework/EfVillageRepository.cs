@@ -1,6 +1,8 @@
 ﻿using DataAccessLayer.Abstract;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.Repository;
 using EntityLayer.Concrete;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +13,13 @@ namespace DataAccessLayer.EntityFramework
 {
     public class EfVillageRepository : GenericRepository<Village>, IVillageDal
     {
+        /*
+        public List<Village> GetListWithCity()
+        {
+            using (var c = new Context())
+            {
+                return c.Villages?.Include(x => x.City).ToList();
+            }
+        }*/
     }
 }

@@ -1,6 +1,5 @@
 ﻿using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
-using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,6 +7,17 @@ namespace ECommerce.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Authorize(Roles = "Admin")]
+    public class GenderController : Controller
+    {
+        GenderManager gm = new GenderManager(new EfGenderRepository());
+        public IActionResult Index()
+        {
+            var values = gm.GetListAll();
+            return View(values);
+        }
+    }
+}
+/*
     public class BrandController : Controller
     {
         BrandManager bm = new BrandManager(new EfBrandRepository());
@@ -58,5 +68,4 @@ namespace ECommerce.Areas.Admin.Controllers
             bm.TUpdate(value);
             return RedirectToAction("Index", "Brand");
         }
-    }
-}
+    }*/

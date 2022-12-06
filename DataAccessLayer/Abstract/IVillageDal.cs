@@ -9,5 +9,6 @@ namespace DataAccessLayer.Abstract
 {
     public interface IVillageDal : IGenericDal<Village>
     {
+        /*List<Village> GetListWithCity();*/
     }
 }

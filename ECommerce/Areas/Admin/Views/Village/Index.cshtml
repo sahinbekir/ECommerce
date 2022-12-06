@@ -1,9 +1,11 @@
 ﻿@using EntityLayer.Concrete
-@model List<ContactUs>
+@model List<Village>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/AdminLayout/AdminLayout.cshtml";
 }
+
+
 
 
 <body>
@@ -14,7 +16,7 @@
             <div class="col-lg-12">
                 <div class="ibox ">
                     <div class="ibox-title">
-                        <h5 style="text-align:center;">All Contact Message List  </h5>
+                        <h5>All Village List  </h5>
                         <div class="ibox-tools">
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
@@ -29,13 +31,8 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Contact UserName</th>
-                                    <th>Contact Mail</th>
-                                    <th>Contact Subject</th>
-                                    <th>Contact Context</th>
-                                    <th>Contact Created Date</th>
-                                    <th>Contact Updated Date</th>
-                                    <th>Is Inactive?</th>
+                                    <th>City Name</th>
+                                    <th>Village Name</th>
                                     <th style="text-align:center;">Update</th>
                                     <th style="text-align:center;">Delete</th>
 
@@ -46,20 +43,17 @@
                                 {
                                     <tr>
                                         <th>@item.Id</th>
-                                        <td>@item.UserName</td>
-                                        <td>@item.Mail</td>
-                                        <td>@item.Subject</td>
-                                        <td>@item.Context</td>
-                                        <td>@item.CreatedDate</td>
-                                        <td>@item.UpdatedDate</td>
-                                        <td>@item.IsDeleted</td>
-                                        <td style="text-align:center;"><a href="/Admin/AdminContactUs/DeleteContact/@item.Id" class="btn btn-danger">Check Status</a></td>
+                                        <td>@item.CityId</td>
+                                        <td>@item.Name</td>
+                                        <td style="text-align:center;"><a href="/Admin/Village/UpdateVillage/@item.Id" class="btn btn-warning">Update</a></td>
+                                        <td style="text-align:center;"><a href="/Admin/Village/DeleteVillage/@item.Id" class="btn btn-danger">Delete</a></td>
                                     </tr>
                                 }
 
 
                             </tbody>
                         </table>
+                        <a href="/Admin/Village/AddVillage/" class="btn btn-primary">Add Village</a>
                     </div>
                 </div>
             </div>
@@ -67,7 +61,6 @@
 
     </div>
 </body>
-
 
 
 
