@@ -1,0 +1,20 @@
+﻿@using EntityLayer.Concrete
+@model Gender
+@{
+    ViewData["Title"] = "UpdateGender";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout/AdminLayout.cshtml";
+}
+
+<h1>Update Gender</h1>
+
+<form method="post">
+    <input type="hidden" value="@Model.Id" name="Id" class="form-control" />
+    <input type="hidden" value="@Model.CreatedDate" name="CreatedDate" class="form-control" />
+    <input type="hidden" value="@Model.IsDeleted" name="IsDeleted" class="form-control" />
+    <div class="form-group">
+        <label>Gender Name</label>
+        <input type="text" value="@Model.Name" name="Name" class="form-control" />
+    </div>
+
+    <button class="btn btn-info">Update</button>
+</form>

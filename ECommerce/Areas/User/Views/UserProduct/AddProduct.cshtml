@@ -31,9 +31,9 @@
                         <input type="file" name="MovieUrl" />
                     </div>
                     <label for="exampleInputName1">Product Brand</label>
-                    @Html.DropDownListFor(x=>x.BrandId,(List<SelectListItem>)ViewBag.bv,new {@class="form-control"})
+                    @Html.DropDownListFor(x=>x.BrandId,(List<SelectListItem>)ViewBag.bvalues,new {@class="form-control"})
                         <label for="exampleInputName1">Product Category</label>
-                    @Html.DropDownListFor(x=>x.SubCategoryId,(List<SelectListItem>)ViewBag.scv,new {@class="form-control"})
+                    @Html.DropDownListFor(x=>x.SubCategoryId,(List<SelectListItem>)ViewBag.scvalues,new {@class="form-control"})
                     <div class="form-group">
                         <label for="exampleInputName1">Product Version</label>
                         @Html.TextBoxFor(x=>x.Version, new {@class="form-control"})

@@ -15,14 +15,10 @@
                         <div class="col-md-5">
                             <div class="product-images">
                                 <div>
-                                    <a href="/Product/Details/@item.Id">
                                         <img src="@item.ThumbnailImgUrl" class="card-img-top img-fluid" alt="">
-                                    </a>
                                 </div>
                                 <div>
-                                    <a href="/Product/Details/@item.Id">
                                         <img src="@item.ImageUrl" class="card-img-top img-fluid" alt="">
-                                    </a>
                                 </div>
                                 <br />
 
@@ -51,18 +47,16 @@
                             @item.SubCategory?.Name
 
                             <h4>Product Brand</h4>
-                            @item.Brand.Name
+                            @item.Brand?.Name
 
                             <h4>Product Owner</h4>
-                            @item.User.FullName
+                            @item.User?.FullName
                             <hr>
                             <h4 style="text-align:center;">Product Movie</h4>
                             <div>
-                                <a href="/Product/Details/@item.Id">
                                     <video src="@item.MovieUrl" controls>
                                         Your browser does not support this video...
                                     </video>
-                                </a>
                             </div>
                             <hr>
                             <div>

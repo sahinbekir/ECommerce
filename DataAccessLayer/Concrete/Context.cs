@@ -81,3 +81,7 @@ Select @ID=ProductId, @Score=Score from inserted
 Update ProductRatings Set TotalScore=TotalScore+@Score, RatingCount+=1, CreatedDate=CreatedDate,UpdatedDate=CURRENT_TIMESTAMP,IsDeleted=0
 Where ProductId=@ID
 */
+// We will a trigger or in app productcomment delete-update productrating remove-update.
+// We Will a trigger or in app category active-inactive with subcategory active-inactive.
+// We Will a trigger or in app city active-inactive with village active-inactive.
+// We Will a trigger or in app product active-inactive with stockamount active-inactive.

@@ -1,0 +1,51 @@
+﻿@using EntityLayer.Concrete
+@model AboutUs
+@{
+    ViewData["Title"] = "UpdateAboutUs";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout/AdminLayout.cshtml";
+}
+
+<h1>Update About Us</h1>
+
+<form method="post">
+    <input type="hidden" value="@Model.Id" name="Id" class="form-control" />
+    <input type="hidden" value="@Model.CreatedDate" name="CreatedDate" class="form-control" />
+    <input type="hidden" value="@Model.IsDeleted" name="IsDeleted" class="form-control" />
+    <input type="hidden" value="@Model.ImageV1" name="ImageV1" class="form-control" />
+    <input type="hidden" value="@Model.ImageV2" name="ImageV2" class="form-control" />
+    <input type="hidden" value="@Model.MovieV1" name="MovieV1" class="form-control" />
+    <div class="form-group">
+        <label>About Us First Detail</label>
+        <textarea name="DetailsV1" rows="2" class="form-control" placeholder="About Us First Detail...">@Model.DetailsV1</textarea>
+    </div>
+    <div class="form-group">
+        <label>About Us Second Detail</label>
+        <textarea name="DetailsV2" rows="2" class="form-control" placeholder="About Us Second Detail...">@Model.DetailsV2</textarea>
+    </div>
+    <div class="form-group">
+        <label>About Us Company Name</label>
+        <input type="text" value="@Model.Company" name="Company" placeholder="Company" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>About Us Contact Email</label>
+        <input type="email" value="@Model.Email" name="Email" placeholder="Email" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>About Us Contact Phone Number</label>
+        <input type="text" value="@Model.Phone" name="Phone" placeholder="Phone" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>About Us Country</label>
+        <input type="text" value="@Model.Coutry" name="Country" placeholder="Country" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>About Us State</label>
+        <input type="text" value="@Model.State" name="State" placeholder="State" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>About Us Map Location</label>
+        <input type="url" value="@Model.MapLocationV1" name="MapLocationV1" placeholder="Map Location" class="form-control" />
+    </div>
+
+    <button class="btn btn-info">Update</button>
+</form>

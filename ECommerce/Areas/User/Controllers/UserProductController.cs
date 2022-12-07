@@ -16,10 +16,11 @@ namespace ECommerce.Areas.User.Controllers
     [Authorize(Roles = "User")]
     public class UserProductController : Controller
     {
+        UserManager um = new UserManager(new EfUserRepository());
         ProductManager pm = new ProductManager(new EfProductRepository());
         public IActionResult Index(int page = 1)
         {
-            var values = pm.GetListAll().ToPagedList(page, 8);
+            var values = pm.GetProductListWithCBU().ToPagedList(page, 8);
             return View(values);
         }
         public IActionResult Details(int id)
@@ -31,9 +32,8 @@ namespace ECommerce.Areas.User.Controllers
         public IActionResult MyProduct(int page = 1)
         {
             var username = User.Identity.Name;
-            Context c = new Context();
-            var userid = c.Users.Where(x => x.UserName == username).Select(y => y.Id).FirstOrDefault();
-            var values = pm.GetListAll().Where(x => x.UserId == userid).ToPagedList(page, 8);
+            var userid = um.GetListAll().Where(x => x.UserName == username).Select(y => y.Id).FirstOrDefault();
+            var values = pm.GetProductListWithCBU().Where(x => x.UserId == userid).ToPagedList(page, 8);
             return View(values);
         }
         [HttpPost]
@@ -52,7 +52,7 @@ namespace ECommerce.Areas.User.Controllers
                                                        Text = x.Name,
                                                        Value = x.Id.ToString()
                                                    }).ToList();
-            ViewBag.scv = categoryvalues;
+            ViewBag.scvalues = categoryvalues;
             BrandManager bm = new BrandManager(new EfBrandRepository());
             List<SelectListItem> brandvalues = (from x in bm.GetListAll()
                                                    select new SelectListItem
@@ -60,7 +60,7 @@ namespace ECommerce.Areas.User.Controllers
                                                        Text = x.Name,
                                                        Value = x.Id.ToString()
                                                    }).ToList();
-            ViewBag.bv = brandvalues;
+            ViewBag.bvalues = brandvalues;
             return View();
         }
         [HttpPost]
@@ -109,8 +109,8 @@ namespace ECommerce.Areas.User.Controllers
 
             product.UserId = userid;
             product.IsDeleted = false;
-            product.CreatedDate = Convert.ToDateTime(DateTime.Now);
-            product.UpdatedDate = Convert.ToDateTime(DateTime.Now);
+            product.CreatedDate = DateTime.Now;
+            product.UpdatedDate = DateTime.Now;
             pm.TAdd(product);
             return RedirectToAction("MyProduct", "UserProduct");
         }
@@ -129,7 +129,7 @@ namespace ECommerce.Areas.User.Controllers
         {
             var productvalue = pm.GetById(id);
             pm.TDelete(productvalue);
-            //return RedirectToAction("Index","UserDashboard");
+            //return RedirectToAction("MyProduct","UserProduct");
             return View();
         }
     }

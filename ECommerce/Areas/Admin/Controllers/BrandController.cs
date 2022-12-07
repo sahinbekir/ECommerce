@@ -55,6 +55,7 @@ namespace ECommerce.Areas.Admin.Controllers
             {
                 value.IsDeleted = true;
             }
+            value.UpdatedDate = DateTime.Now;
             bm.TUpdate(value);
             return RedirectToAction("Index", "Brand");
         }

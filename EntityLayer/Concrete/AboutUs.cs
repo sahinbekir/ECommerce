@@ -16,6 +16,11 @@ namespace EntityLayer.Concrete
         public string? ImageV1 { get; set; }
         public string? ImageV2 { get; set; }
         public string? MovieV1 { get; set; }
+        public string? Coutry { get; set; }
+        public string? State { get; set; }
+        public string? Company { get; set; }
+        public string? Email { get; set; }
+        public string? Phone { get; set; }
         public string? MapLocationV1 { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }

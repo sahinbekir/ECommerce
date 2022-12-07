@@ -1,0 +1,16 @@
+﻿@using EntityLayer.Concrete
+@model Gender
+@{
+    ViewData["Title"] = "AddGender";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout/AdminLayout.cshtml";
+}
+
+<h1>Add Gender</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label>Gender Name</label>
+        <input type="text" name="Name" class="form-control" />
+    </div>
+    <button class="btn btn-info">Save</button>
+</form>

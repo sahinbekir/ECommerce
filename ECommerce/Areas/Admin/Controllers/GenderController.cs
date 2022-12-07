@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
+using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,48 +16,37 @@ namespace ECommerce.Areas.Admin.Controllers
             var values = gm.GetListAll();
             return View(values);
         }
-    }
-}
-/*
-    public class BrandController : Controller
-    {
-        BrandManager bm = new BrandManager(new EfBrandRepository());
-        public IActionResult Index()
-        {
-            var values = bm.GetListAll();
-            return View(values);
-        }
         [HttpGet]
-        public IActionResult AddBrand()
+        public IActionResult AddGender()
         {
             return View();
         }
         [HttpPost]
-        public IActionResult AddBrand(Brand model)
+        public IActionResult AddGender(Gender model)
         {
             model.CreatedDate = DateTime.Now;
             model.UpdatedDate = DateTime.Now;
             model.IsDeleted = false;
-            bm.TAdd(model);
-            return RedirectToAction("Index", "Brand");
+            gm.TAdd(model);
+            return RedirectToAction("Index", "Gender");
         }
         [HttpGet]
-        public IActionResult UpdateBrand(int id)
+        public IActionResult UpdateGender(int id)
         {
-            var values = bm.GetById(id);
+            var values = gm.GetById(id);
             return View(values);
         }
         [HttpPost]
-        public IActionResult UpdateBrand(Brand model)
+        public IActionResult UpdateGender(Gender model)
         {
             model.UpdatedDate = DateTime.Now;
-            bm.TUpdate(model);
-            return RedirectToAction("Index", "Brand");
+            gm.TUpdate(model);
+            return RedirectToAction("Index", "Gender");
         }
-        public IActionResult DeleteBrand(int id)
+        public IActionResult DeleteGender(int id)
         {
 
-            var value = bm.GetById(id);
+            var value = gm.GetById(id);
             if (value.IsDeleted == true)
             {
                 value.IsDeleted = false;
@@ -65,7 +55,9 @@ namespace ECommerce.Areas.Admin.Controllers
             {
                 value.IsDeleted = true;
             }
-            bm.TUpdate(value);
-            return RedirectToAction("Index", "Brand");
+            value.UpdatedDate = DateTime.Now;
+            gm.TUpdate(value);
+            return RedirectToAction("Index", "Gender");
         }
-    }*/
+    }
+}

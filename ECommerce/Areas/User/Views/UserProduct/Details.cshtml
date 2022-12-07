@@ -5,7 +5,6 @@
 }
 
 
-
 @foreach (var item in Model)
 {
     <div class="row">
@@ -16,17 +15,13 @@
                         <div class="col-md-5">
                             <div class="product-images">
                                 <div>
-                                    <a href="/Product/Details/@item.Id">
-                                        <img src="@item.ImageUrl" class="card-img-top img-fluid" alt="">
+                                    <img src="@item.ThumbnailImgUrl" class="card-img-top img-fluid" alt="">
+                                </div>
+                                <div>
+                                    <img src="@item.ImageUrl" class="card-img-top img-fluid" alt="">
                                 </div>
                                 <br />
-                                <div>
-                                    <a href="/Product/Details/@item.Id">
-                                        <video src="@item.MovieUrl" controls>
-                                            Your browser does not support this video...
-                                        </video>
-                                    </a>
-                                </div>
+
 
 
                             </div>
@@ -37,7 +32,7 @@
                             <h2 class="font-bold m-b-xs">
                                 @item.Name
                             </h2>
-                            <small>@item.SubCategoryId - @item.Version - @item.UserId</small>
+                            <small>@item.Version</small>
                             <div class="m-t-md">
                                 <h2 class="product-main-price">$@item.Cost <small class="text-muted">Exclude Tax</small> </h2>
                             </div>
@@ -46,8 +41,24 @@
                             <h4>Product Description</h4>
 
                             @item.Description
-                            <hr>
 
+                            <hr>
+                            <h4>Product Category</h4>
+                            @item.SubCategory?.Name
+
+                            <h4>Product Brand</h4>
+                            @item.Brand?.Name
+
+                            <h4>Product Owner</h4>
+                            @item.User?.FullName
+                            <hr>
+                            <h4 style="text-align:center;">Product Movie</h4>
+                            <div>
+                                <video src="@item.MovieUrl" controls>
+                                    Your browser does not support this video...
+                                </video>
+                            </div>
+                            <hr>
                             <div>
                                 <div class="btn-group">
                                     <button class="btn btn-primary btn-sm"><i class="fa fa-cart-plus"></i> Add to cart</button>
@@ -64,12 +75,14 @@
                 </div>
                 <div class="ibox-footer">
                     <span class="float-right">
-                        Full stock - <i class="fa fa-clock-o"></i> @item.CreatedDate
+                        Created Date - <i class="fa fa-clock-o"></i> @(((DateTime)item.CreatedDate).ToString("dd.MMM.yyyy"))
                     </span>
-                    @item.IsDeleted
+                    As of @DateTime.Now <strong>Selled : 100 / Have : 200</strong>
                 </div>
             </div>
 
         </div>
     </div>
 }
+<br />
+<br />
