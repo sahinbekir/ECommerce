@@ -1,0 +1,25 @@
+﻿@model IEnumerable<EntityLayer.Concrete.Product>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-6">
+                <div class="ibox">
+                    <div class="ibox-content product-box">
+                        <a href="/Product/Details/@item.Id">
+                            <img src="@item.ThumbnailImgUrl" class="card-img-top img-fluid" alt="">
+                        </a>
+                        <div class="product-desc">
+                            <span class="product-price">
+                                $@item.Cost
+                            </span>
+                            <small class="text-muted">@item.SubCategory?.Name</small>
+                            <a href="/Product/Details/@item.Id" class="product-name"> @item.Name</a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

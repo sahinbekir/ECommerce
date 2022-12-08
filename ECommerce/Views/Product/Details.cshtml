@@ -15,16 +15,17 @@
                         <div class="col-md-5">
                             <div class="product-images">
                                 <div>
-                                        <img src="@item.ThumbnailImgUrl" class="card-img-top img-fluid" alt="">
+                                    <img src="@item.ThumbnailImgUrl" class="card-img-top img-fluid" alt="">
                                 </div>
                                 <div>
-                                        <img src="@item.ImageUrl" class="card-img-top img-fluid" alt="">
+                                    <img src="@item.ImageUrl" class="card-img-top img-fluid" alt="">
                                 </div>
                                 <br />
 
 
 
                             </div>
+                            
 
                         </div>
                         <div class="col-md-7">
@@ -54,9 +55,9 @@
                             <hr>
                             <h4 style="text-align:center;">Product Movie</h4>
                             <div>
-                                    <video src="@item.MovieUrl" controls>
-                                        Your browser does not support this video...
-                                    </video>
+                                <video src="@item.MovieUrl" controls>
+                                    Your browser does not support this video...
+                                </video>
                             </div>
                             <hr>
                             <div>
@@ -66,12 +67,31 @@
                                     <button class="btn btn-white btn-sm"><i class="fa fa-envelope"></i> Contact with owner </button>
                                 </div>
                             </div>
-
+                            
 
 
                         </div>
                     </div>
-
+                    <br />
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-7">
+                            <h1 style="text-align:center;">
+                                <strong>
+                                    Comment About Product
+                                </strong>
+                            </h1>
+                            @await Component.InvokeAsync("ProductCommentList", new { id = ViewBag.pid})
+                        </div>
+                        <div class="col-md-5">
+                            <h1 style="text-align:center;">
+                                <strong>
+                                    Similar Products
+                                </strong>
+                            </h1>
+                            @await Component.InvokeAsync("SimilarProductList", new { id = ViewBag.pid})
+                        </div>
+                    </div>
                 </div>
                 <div class="ibox-footer">
                     <span class="float-right">
@@ -84,5 +104,6 @@
         </div>
     </div>
 }
+
 <br />
 <br />

@@ -25,6 +25,7 @@ namespace ECommerce.Areas.User.Controllers
         }
         public IActionResult Details(int id)
         {
+            ViewBag.pid = id;
             var values = pm.GetProductById(id);
             return View(values);
         }

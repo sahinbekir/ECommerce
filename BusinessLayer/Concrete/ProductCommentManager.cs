@@ -27,6 +27,11 @@ namespace BusinessLayer.Concrete
             return _productCommentDal.GetList();
         }
 
+        public List<ProductComment> GetListByProduct(int id)
+        {
+            return _productCommentDal.GetList(x=>x.ProductId==id);
+        }
+
         public void TAdd(ProductComment t)
         {
             _productCommentDal.Insert(t);

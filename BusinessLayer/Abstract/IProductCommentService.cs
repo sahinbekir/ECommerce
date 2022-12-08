@@ -9,5 +9,6 @@ namespace BusinessLayer.Abstract
 {
     public interface IProductCommentService : IGenericService<ProductComment>
     {
+        List<ProductComment> GetListByProduct(int id);
     }
 }
