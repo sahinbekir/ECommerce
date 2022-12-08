@@ -20,13 +20,25 @@ namespace ECommerce.Areas.User.Controllers
         ProductManager pm = new ProductManager(new EfProductRepository());
         public IActionResult Index(int page = 1)
         {
-            var values = pm.GetProductListWithCBU().ToPagedList(page, 8);
+            var username = User.Identity.Name;
+            var userid = um.GetListAll().Where(x => x.UserName == username).Select(y => y.Id).FirstOrDefault();
+            var values = pm.GetProductListWithCBU().Where(x=>x.UserId!=userid).ToPagedList(page, 8);
             return View(values);
         }
         public IActionResult Details(int id)
         {
             ViewBag.pid = id;
-            var values = pm.GetProductById(id);
+            var username = User.Identity.Name;
+            var userid = um.GetListAll().Where(x => x.UserName == username).Select(y => y.Id).FirstOrDefault();
+            var values = pm.GetProductById(id).Where(x=>x.UserId!=userid);
+            return View(values);
+        }
+        public IActionResult MyProductDetails(int id)
+        {
+            ViewBag.pid = id;
+            var username = User.Identity.Name;
+            var userid = um.GetListAll().Where(x => x.UserName == username).Select(y => y.Id).FirstOrDefault();
+            var values = pm.GetProductById(id).Where(x => x.UserId == userid);
             return View(values);
         }
         [HttpGet]

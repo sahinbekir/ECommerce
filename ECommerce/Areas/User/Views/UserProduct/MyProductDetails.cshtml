@@ -1,9 +1,8 @@
 ﻿@model IEnumerable<EntityLayer.Concrete.Product>
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "MyProductDetails";
     Layout = "~/Areas/User/Views/Shared/UserLayout/UserLayout.cshtml";
 }
-
 
 @foreach (var item in Model)
 {
@@ -79,7 +78,6 @@
                                 </strong>
                             </h1>
                             @await Component.InvokeAsync("ProductCommentList", new { id = ViewBag.pid})
-                            @await Html.PartialAsync("~/Areas/User/Views/ProductComment/AddProductComment.cshtml")
                         </div>
                         <div class="col-md-5">
                             <h1 style="text-align:center;">

@@ -1,0 +1,82 @@
+﻿@using EntityLayer.Concrete
+@model List<ProductComment>
+@{
+    ViewData["Title"] = "MyComments";
+    Layout = "~/Areas/User/Views/Shared/UserLayout/UserLayout.cshtml";
+}
+
+<h1>My Comments</h1>
+
+
+<body>
+    <div class="wrapper wrapper-content animated fadeInRight">
+
+        <div class="row">
+
+            <div class="col-lg-12">
+                <div class="ibox ">
+                    <div class="ibox-title">
+                        <h5 style="text-align:center;">All Contact Message List  </h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+
+
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Comment UserId</th>
+                                    <th>Comment UserFullName</th>
+                                    <th>Comment UserName</th>
+                                    <th>Comment UserImage</th>
+                                    <th>Comment ProductId</th>
+                                    <th>Comment Title</th>
+                                    <th>Comment Context</th>
+                                    <th>Comment Score</th>
+                                    <th>Comment Created Date</th>
+                                    <th>Comment Updated Date</th>
+                                    <th>Is Inactive?</th>
+                                    <th style="text-align:center;">Delete</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <th>@item.Id</th>
+                                        <td>@item.UserId</td>
+                                        <td>@item.UserFullName</td>
+                                        <td>@item.UserName</td>
+                                        <td>@item.UserImage</td>
+                                        <td>@item.ProductId</td>
+                                        <td>@item.CommentTitle</td>
+                                        <td>@item.CommentContent</td>
+                                        <td>@item.Score</td>
+                                        <td>@item.CreatedDate</td>
+                                        <td>@item.UpdatedDate</td>
+                                        <td>@item.IsDeleted</td>
+                                        <td style="text-align:center;"><a href="/User/ProductComment/DeleteMyComments/@item.Id" class="btn btn-danger">Delete</a></td>
+                                    </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+
+
+

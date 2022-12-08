@@ -16,7 +16,7 @@
             <div class="col-md-3">
                 <div class="ibox">
                     <div class="ibox-content product-box">
-                        <a href="/User/UserProduct/Details/@item.Id">
+                        <a href="/User/UserProduct/MyProductDetails/@item.Id">
                             <img src="@item.ThumbnailImgUrl" class="card-img-top img-fluid" alt="">
                         </a>
                         <div class="product-desc">
@@ -24,13 +24,13 @@
                                 $@item.Cost
                             </span>
                             <small class="text-muted"><strong>@item.Brand?.Name</strong> - @item.SubCategory?.Name</small>
-                            <a href="/User/UserProduct/Details/@item.Id" class="product-name"> @item.Name</a>
+                            <a href="/User/UserProduct/MyProductDetails/@item.Id" class="product-name"> @item.Name</a>
                             <div class="small m-t-xs">
                                 @item.Description?.Substring(0,item.Description.Substring(0,131).LastIndexOf(" "))...
                             </div>
                             <small class="text-muted" style="text-align:left;"><strong>Product Owner:</strong> @item.User?.FullName</small>
                             <div class="m-t text-righ">
-                                <a href="/User/UserProduct/Details/@item.Id" class="btn btn-xs btn-outline btn-primary">Product Details <i class="fa fa-long-arrow-right"></i> </a>
+                                <a href="/User/UserProduct/MyProductDetails/@item.Id" class="btn btn-xs btn-outline btn-primary">Product Details <i class="fa fa-long-arrow-right"></i> </a>
                             </div>
                         </div>
                     </div>
