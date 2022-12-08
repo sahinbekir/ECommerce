@@ -1,9 +1,11 @@
 ﻿@using EntityLayer.Concrete
-@model List<ContactUs>
+@model List<ShoppingCart>
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Areas/Admin/Views/Shared/AdminLayout/AdminLayout.cshtml";
+    Layout = "~/Areas/User/Views/Shared/UserLayout/UserLayout.cshtml";
 }
+
+<h1>Shopping Carts</h1>
 
 
 <body>
@@ -14,7 +16,7 @@
             <div class="col-lg-12">
                 <div class="ibox ">
                     <div class="ibox-title">
-                        <h5 style="text-align:center;">All Contact Message List  </h5>
+                        <h5 style="text-align:center;">All Shop List  </h5>
                         <div class="ibox-tools">
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
@@ -29,14 +31,13 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Contact UserName</th>
-                                    <th>Contact Mail</th>
-                                    <th>Contact Subject</th>
-                                    <th>Contact Context</th>
-                                    <th>Contact Created Date</th>
-                                    <th>Contact Updated Date</th>
+                                    <th>Shop User</th>
+                                    <th>Shop Product</th>
+                                    <th>Shop Cost</th>
+                                    <th>Shop Created Date</th>
+                                    <th>Shop Updated Date</th>
                                     <th>Is Inactive?</th>
-                                    <th style="text-align:center;">Delete</th>
+                                    <th style="text-align:center;">Hide</th>
 
                                 </tr>
                             </thead>
@@ -45,14 +46,13 @@
                                 {
                                     <tr>
                                         <th>@item.Id</th>
-                                        <td>@item.UserName</td>
-                                        <td>@item.Mail</td>
-                                        <td>@item.Subject</td>
-                                        <td>@item.Context</td>
+                                        <td>@item.UserId</td>
+                                        <td>@item.ProductId</td>
+                                        <td>@item.Cost</td>
                                         <td>@item.CreatedDate</td>
                                         <td>@item.UpdatedDate</td>
                                         <td>@item.IsDeleted</td>
-                                        <td style="text-align:center;"><a href="/Admin/AdminContactUs/DeleteContact/@item.Id" class="btn btn-danger">Check Status</a></td>
+                                        <td style="text-align:center;"><a href="/User/ShoppingCart/HideMyShoppingCart/@item.Id" class="btn btn-warning">Update</a></td>
                                     </tr>
                                 }
 

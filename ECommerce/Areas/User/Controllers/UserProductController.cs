@@ -18,6 +18,45 @@ namespace ECommerce.Areas.User.Controllers
     {
         UserManager um = new UserManager(new EfUserRepository());
         ProductManager pm = new ProductManager(new EfProductRepository());
+        StockAmountManager sam = new StockAmountManager(new EfStockAmountRepository());
+        [HttpGet]
+        public IActionResult AddStockDetail(int id)
+        {
+            var check = sam.GetListAll().Where(x => x.ProductId == id).FirstOrDefault();
+            ViewBag.pid = id;
+            if (check == null)
+            {
+                return View();
+            }
+            else
+            {
+                return View(check);
+            }
+        }
+        [HttpPost]
+        public IActionResult AddStockDetail(int id ,StockAmount sa)
+        {
+            var check = sam.GetListAll().Where(x=>x.ProductId==id).FirstOrDefault();
+            if (check==null)
+            {
+                sa.SoldScore = 0;
+                sa.CreatedDate = DateTime.Now;
+                sa.UpdatedDate = DateTime.Now;
+                sa.IsDeleted = false;
+                sam.TAdd(sa);
+            }
+            else
+            {
+                sa.Id = check.Id;
+                sa.SoldScore=check.SoldScore;
+                sa.CreatedDate= check.CreatedDate;
+                sa.UpdatedDate = DateTime.Now;
+                sa.IsDeleted=check.IsDeleted;
+                sam.TUpdate(sa);
+            }
+            return RedirectToAction("MyProduct","UserProduct");
+        }
+
         public IActionResult Index(int page = 1)
         {
             var username = User.Identity.Name;
@@ -46,7 +85,7 @@ namespace ECommerce.Areas.User.Controllers
         {
             var username = User.Identity.Name;
             var userid = um.GetListAll().Where(x => x.UserName == username).Select(y => y.Id).FirstOrDefault();
-            var values = pm.GetProductListWithCBU().Where(x => x.UserId == userid).ToPagedList(page, 8);
+            var values = pm.GetProductListWithCBU().Where(x => x.UserId == userid).ToPagedList(page, 12);
             return View(values);
         }
         [HttpPost]
@@ -145,5 +184,6 @@ namespace ECommerce.Areas.User.Controllers
             //return RedirectToAction("MyProduct","UserProduct");
             return View();
         }
+        
     }
 }
