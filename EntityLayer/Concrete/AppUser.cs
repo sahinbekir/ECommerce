@@ -15,8 +15,8 @@ namespace EntityLayer.Concrete
         public string? ImageUrl { get; set; }
         public int CityId { get; set; }
         public City? City { get; set; }
-        public int VillageId { get; set; }
-        public Village? Village { get; set; }
+        public int StateId { get; set; }
+        public State? State { get; set; }
         public string? Address { get; set; }
         public int GenderId { get; set; }
         public Gender? Gender { get; set; }

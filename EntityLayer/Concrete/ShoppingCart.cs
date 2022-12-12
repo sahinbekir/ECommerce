@@ -16,6 +16,7 @@ namespace EntityLayer.Concrete
         public Product? Product { get; set; }
         public int UserId { get; set; }
         public int Cost { get; set; }
+        public int Piece { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
         public bool IsDeleted { get; set; }

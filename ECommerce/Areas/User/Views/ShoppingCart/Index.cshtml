@@ -34,6 +34,7 @@
                                     <th>Shop User</th>
                                     <th>Shop Product</th>
                                     <th>Shop Cost</th>
+                                    <th>Shop Piece</th>
                                     <th>Shop Created Date</th>
                                     <th>Shop Updated Date</th>
                                     <th>Is Inactive?</th>
@@ -49,10 +50,11 @@
                                         <td>@item.UserId</td>
                                         <td>@item.ProductId</td>
                                         <td>@item.Cost</td>
+                                        <td>@item.Piece</td>
                                         <td>@item.CreatedDate</td>
                                         <td>@item.UpdatedDate</td>
                                         <td>@item.IsDeleted</td>
-                                        <td style="text-align:center;"><a href="/User/ShoppingCart/HideMyShoppingCart/@item.Id" class="btn btn-warning">Update</a></td>
+                                        <td style="text-align:center;"><a href="/User/ShoppingCart/HideMyShoppingCart/@item.Id" class="btn btn-warning">Hide</a></td>
                                     </tr>
                                 }
 

@@ -1,0 +1,20 @@
+﻿@using EntityLayer.Concrete
+@model StockPiece
+@{
+    ViewData["Title"] = "UpdateStockDetail";
+    Layout = "~/Areas/User/Views/Shared/UserLayout/UserLayout.cshtml";
+}
+
+<h1>Update Stock Detail</h1>
+
+
+
+<form method="post">
+    <input type="hidden" name="ProductId" value="@ViewBag.pid" class="form-control" />
+    <div class="form-group">
+        <label>Stock Amount</label>
+        <input type="text" value="@Model.RemainingPiece" name="RemainingPiece" class="form-control" />
+    </div>
+
+    <button class="btn btn-info">Save</button>
+</form>

@@ -41,7 +41,7 @@ namespace ECommerce.Controllers
                 user.PhoneNumber = model.PhoneNumber;
                 user.BornDate = model.BornDate;
                 user.CityId = 1;
-                user.VillageId = 1;
+                user.StateId = 1;
                 user.Address = "";
                 user.GenderId = 1;
                 user.ImageUrl = "/Media/ecpp.png";

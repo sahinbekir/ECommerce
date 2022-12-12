@@ -1,0 +1,80 @@
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model IPagedList<EntityLayer.Concrete.Product>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/User/Views/Shared/UserLayout/UserLayout.cshtml";
+}
+
+
+
+<h1>My Products</h1>
+
+<body>
+    <div class="wrapper wrapper-content animated fadeInRight">
+
+        <div class="row">
+
+            <div class="col-lg-12">
+                <div class="ibox ">
+                    <div class="ibox-title">
+                        <h5 style="text-align:center;">All Contact Message List  </h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+
+
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+
+                                    <th>Brand</th>
+                                    <th>Sub Category</th>
+                                    <th>Version</th>
+                                    <th>Cost</th>
+                                    <th>Comment Created Date</th>
+                                    <th>Comment Updated Date</th>
+                                    <th>Is Inactive?</th>
+                                    <th style="text-align:center;">Stock</th>
+                                    <th style="text-align:center;">Details</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <th>@item.Id</th>
+                                        <td>@item.Name</td>
+                                        <td>@item.Description?.Substring(0,item.Description.Substring(0,13).LastIndexOf(" "))...</td>
+
+                                        <td>@item.Brand?.Name</td>
+                                        <td>@item.SubCategory?.Name</td>
+                                        <td>@item.Version</td>
+                                        <td>@item.Cost</td>
+                                        <td>@item.CreatedDate</td>
+                                        <td>@item.UpdatedDate</td>
+                                        <td>@item.IsDeleted</td>
+                                        <td style="text-align:center;"><a href="/User/MyProduct/UpdateStockDetail/@item.Id" class="btn btn-primary">Add Stock Detail</a></td>
+                                        <td style="text-align:center;"><a href="/User/MyProduct/Details/@item.Id" class="btn btn-xs btn-outline btn-primary">Product Details</a></td>
+                                    </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @Html.PagedListPager((IPagedList)Model, page => Url.Action("MyProduct", new {page}))
+    </div>
+</body>

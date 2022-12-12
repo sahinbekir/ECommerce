@@ -23,38 +23,21 @@ namespace ECommerce.Areas.User.Controllers
         }
         public IActionResult AddMyShoppingCart(int id)
         {
-            
+
             var username = User.Identity.Name;
             var userid = um.GetListAll().Where(x => x.UserName == username).Select(y => y.Id).FirstOrDefault();
-            var check = scartm.GetListAll().Where(x => x.ProductId == id).FirstOrDefault();
+            var check = scartm.GetListAll().Where(x => x.ProductId == id && x.UserId == userid).FirstOrDefault();
             var productcost = pm.GetById(id);
-            if (check == null)
-            {
-                
-                ShoppingCart scart = new ShoppingCart();
-                scart.ProductId = id;
-                scart.UserId = userid;
-                scart.Cost = productcost.Cost;
-                scart.CreatedDate = DateTime.Now;
-                scart.UpdatedDate = DateTime.Now;
-                scart.IsDeleted = false;
-                scartm.TAdd(scart);
-            }
-            else
-            {
 
-                check.UpdatedDate = DateTime.Now;
-                if (check.IsDeleted == false)
-                {
-                    check.IsDeleted = false;
-                }
-                else
-                {
-                    check.IsDeleted = false;
-                }
-                check.Cost = productcost.Cost;
-                scartm.TUpdate(check);
-            }
+            ShoppingCart scart = new ShoppingCart();
+            scart.ProductId = id;
+            scart.UserId = userid;
+            scart.Cost = productcost.Cost;
+            scart.CreatedDate = DateTime.Now;
+            scart.UpdatedDate = DateTime.Now;
+            scart.IsDeleted = false;
+            scartm.TAdd(scart);
+
 
             //del product cart
             ProductCartManager pcartm = new ProductCartManager(new EfProductCartRepository());
@@ -70,6 +53,33 @@ namespace ECommerce.Areas.User.Controllers
             }
             pcartm.TUpdate(curpcart);
 
+
+            return RedirectToAction("Index", "ShoppingCart");
+        }
+        [HttpGet]
+        public IActionResult ShopDetail(int id)
+        {
+            var value = pm.GetById(id);
+            ViewBag.pid = value.Id;
+            ViewBag.pname = value.Name;
+            ViewBag.pcost = value.Cost;
+            return View();
+        }
+        [HttpPost]
+        public IActionResult ShopDetail(int id, ShoppingCart sc)
+        {
+            var username = User.Identity.Name;
+            var userid = um.GetListAll().Where(x => x.UserName == username).Select(y => y.Id).FirstOrDefault();
+            var totalcost = sc.Piece * sc.Cost;
+            ShoppingCart scart = new ShoppingCart();
+            scart.ProductId = sc.Id;
+            scart.UserId = userid;
+            scart.Cost = totalcost;
+            scart.Piece = sc.Piece;
+            scart.CreatedDate = DateTime.Now;
+            scart.UpdatedDate = DateTime.Now;
+            scart.IsDeleted = false;
+            scartm.TAdd(scart);
 
             return RedirectToAction("Index", "ShoppingCart");
         }

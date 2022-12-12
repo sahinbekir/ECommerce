@@ -14,6 +14,7 @@ namespace ECommerce.Areas.User.Controllers
     public class CompleteRegistrationController : Controller
     {
         UserManager _userManager = new UserManager(new EfUserRepository());
+
         [HttpGet]
         public IActionResult Index()
         {
@@ -26,17 +27,17 @@ namespace ECommerce.Areas.User.Controllers
                                                }).ToList();
             ViewBag.cv = cityvalues;
 
-            VillageManager vm = new VillageManager(new EfVillageRepository());
-            List<SelectListItem> villagevalues = (from x in vm.GetListAll()
+            StateManager sm = new StateManager(new EfStateRepository());
+            List<SelectListItem> statevalues = (from x in sm.GetListAll()
                                                   select new SelectListItem
                                                   {
                                                       Text = x.Name,
                                                       Value = x.Id.ToString()
                                                   }).ToList();
-            ViewBag.vv = villagevalues;
+            ViewBag.sv = statevalues;
 
-            GenderManager gv = new GenderManager(new EfGenderRepository());
-            List<SelectListItem> gendervalues = (from x in gv.GetListAll()
+            GenderManager gm = new GenderManager(new EfGenderRepository());
+            List<SelectListItem> gendervalues = (from x in gm.GetListAll()
                                                  select new SelectListItem
                                                  {
                                                      Text = x.Name,
@@ -52,9 +53,10 @@ namespace ECommerce.Areas.User.Controllers
             {
                 var username = User.Identity.Name;
                 var user = _userManager.GetListAll().Where(x => x.UserName == username).FirstOrDefault();
+
                 user.CityId = model.CityId;
-                user.VillageId = model.VillageId;
-                user.Address = model.Address;
+                user.StateId = model.StateId;
+                user.Address = "";
                 user.GenderId = model.GenderId;
                 user.ProfileUpdatedDate = DateTime.Now;
 

@@ -12,7 +12,7 @@ namespace ECommerce.Areas.Admin.Controllers
     public class VillageController : Controller
     {
         //CityManager cm = new CityManager(new EfCityRepository());
-        VillageManager vm = new VillageManager(new EfVillageRepository());
+        StateManager vm = new StateManager(new EfStateRepository());
         public IActionResult Index()
         {
             var values = vm.GetListAll();
@@ -32,7 +32,7 @@ namespace ECommerce.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult AddVillage(Village model)
+        public IActionResult AddVillage(State model)
         {
             vm.TAdd(model);
             return RedirectToAction("Index", "Village");
@@ -52,7 +52,7 @@ namespace ECommerce.Areas.Admin.Controllers
             return View(values);
         }
         [HttpPost]
-        public IActionResult UpdateVillage(Village model)
+        public IActionResult UpdateVillage(State model)
         {
             vm.TUpdate(model);
             return RedirectToAction("Index", "Village");

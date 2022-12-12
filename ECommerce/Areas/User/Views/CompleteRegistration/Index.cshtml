@@ -1,4 +1,5 @@
 ﻿@model RegistrationViewModel
+
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/User/Views/Shared/UserLayout/UserLayout.cshtml";
@@ -9,13 +10,13 @@
 @using(Html.BeginForm("Index", "CompleteRegistration" ,FormMethod.Post)){
 	<br />
 	@Html.Label("City")
-	@Html.DropDownListFor(x=>x.CityId,(List<SelectListItem>)ViewBag.cv,new {@class="form-control"})
+	@Html.DropDownListFor(x=>x.CityId, (List<SelectListItem>) ViewBag.cv, new {@class="form-control"})
 	<br />
-	@Html.Label("Village")
-	@Html.DropDownListFor(x=>x.VillageId,(List<SelectListItem>)ViewBag.vv,new {@class="form-control"})
+	@Html.Label("State")
+	@Html.DropDownListFor(x=>x.StateId, (List<SelectListItem>) ViewBag.sv, new {@class="form-control"})
 	<br />
 	@Html.Label("Gender")
-	@Html.DropDownListFor(x=>x.GenderId,(List<SelectListItem>)ViewBag.gv,new {@class="form-control"})
+	@Html.DropDownListFor(x=>x.GenderId, (List<SelectListItem>) ViewBag.gv, new {@class="form-control"})
 	<br />
 	<br />
 

@@ -13,12 +13,5 @@ namespace DataAccessLayer.EntityFramework
 {
     public class EfSubCategoryRepository : GenericRepository<SubCategory>, ISubCategoryDal
     {
-        public List<SubCategory> GetListWithCategory()
-        {
-            using (var c = new Context())
-            {
-                return c.SubCategories?.Include(x => x.Category).ToList();
-            }
-        }
     }
 }

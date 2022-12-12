@@ -6,6 +6,6 @@ namespace ECommerce.Areas.User.Models
     public class ProfilePhotoViewModel
     {
         public IFormFile? ProfilePhoto { get; set; }
-        public string Address { get; set; }
+        public string? Address { get; set; }
     }
 }

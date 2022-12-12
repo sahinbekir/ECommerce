@@ -18,7 +18,7 @@ namespace ECommerce.Areas.User.Controllers
         {
             var username = User.Identity.Name;
             var userid = um.GetListAll().Where(x => x.UserName == username).Select(y => y.Id).FirstOrDefault();
-            var check = npm.GetListAll().Where(x => x.ProductId == id).FirstOrDefault();
+            var check = npm.GetListAll().Where(x => x.ProductId == id && x.UserId==userid).FirstOrDefault();
             if (check == null)
             {
                 NewsProduct np = new NewsProduct();

@@ -17,6 +17,6 @@ namespace EntityLayer.Concrete
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
         public bool IsDeleted { get; set; }
-        public List<SubCategory>? SubCategories { get; set; }
+        public List<Product>? Products { get; set; }
     }
 }

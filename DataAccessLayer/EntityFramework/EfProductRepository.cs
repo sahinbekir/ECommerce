@@ -17,7 +17,8 @@ namespace DataAccessLayer.EntityFramework
         {
             using (var c = new Context())
             {
-                return c.Products?.Include(x => x.SubCategory)
+                return c.Products?.Include(x=>x.Category)
+                    .Include(x => x.SubCategory)
                     .Include(x => x.Brand)
                     .Include(x => x.User).ToList();
             }

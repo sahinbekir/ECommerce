@@ -32,7 +32,7 @@ namespace DataAccessLayer.Concrete
             base.OnModelCreating(modelBuilder);
         }
         public DbSet<Product>? Products { get; set; }
-        public DbSet<StockAmount>? StockAmounts { get; set; }
+        public DbSet<StockPiece>? StockPieces { get; set; }
         public DbSet<ProductComment>? ProductComments { get; set; }
         public DbSet<Category>? Categories { get; set; }
         public DbSet<SubCategory>? SubCategories { get; set; }
@@ -47,7 +47,7 @@ namespace DataAccessLayer.Concrete
         public DbSet<AboutUs>? AboutUss { get; set; }
         public DbSet<ContactUs>? ContactUss { get; set; }
         public DbSet<Gender>? Genders { get; set; }
-        public DbSet<Village>? Villages { get; set; }
+        public DbSet<State>? States { get; set; }
     }
 }
 // Migration Commands *Packet Manager*
@@ -57,31 +57,7 @@ namespace DataAccessLayer.Concrete
 ->update-database
 */
 
-// Database ProductRating Triggers SQL Command
-/*
-Create Trigger AddProductInRaitingTable
-On Products
-After Insert
-As
-Declare @ID int
-Select @ID=Id from inserted
-Insert Into ProductRatings (ProductId,TotalScore,RatingCount,CreatedDate,UpdatedDate,IsDeleted)
-Values (@ID,0,0,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,0)
-
-*/
-/*
-Create Trigger AddScoreInProductComment
-On ProductComments
-After Insert
-As
-Declare @ID int
-Declare @Score int
-Declare @RaitingCount int
-Select @ID=ProductId, @Score=Score from inserted
-Update ProductRatings Set TotalScore=TotalScore+@Score, RatingCount+=1, CreatedDate=CreatedDate,UpdatedDate=CURRENT_TIMESTAMP,IsDeleted=0
-Where ProductId=@ID
-*/
-// We will a trigger or in app productcomment delete-update productrating remove-update.
+// We will a trigger or in app product-productcomment add-delete-update productrating add-remove-update.
 // We Will a trigger or in app category active-inactive with subcategory active-inactive.
 // We Will a trigger or in app city active-inactive with village active-inactive.
 // We Will a trigger or in app product active-inactive with stockamount active-inactive.

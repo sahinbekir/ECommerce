@@ -5,6 +5,7 @@
 }
 
 
+
 @foreach (var item in Model)
 {
     <div class="row">
@@ -18,13 +19,17 @@
                                     <img src="@item.ThumbnailImgUrl" class="card-img-top img-fluid" alt="">
                                 </div>
                                 <div>
-                                    <img src="@item.ImageUrl" class="card-img-top img-fluid" alt="">
+                                    <img src="@item.ImageUrl1" class="card-img-top img-fluid" alt="">
+                                </div>
+                                <div>
+                                    <img src="@item.ImageUrl2" class="card-img-top img-fluid" alt="">
                                 </div>
                                 <br />
 
 
 
                             </div>
+
 
                         </div>
                         <div class="col-md-7">
@@ -44,7 +49,7 @@
 
                             <hr>
                             <h4>Product Category</h4>
-                            @item.SubCategory?.Name
+                            @item.Category?.Name - @item.SubCategory?.Name
 
                             <h4>Product Brand</h4>
                             @item.Brand?.Name
@@ -71,6 +76,8 @@
 
                         </div>
                     </div>
+                    <br />
+                    <hr>
                     <div class="row">
                         <div class="col-md-7">
                             <h1 style="text-align:center;">
@@ -101,5 +108,6 @@
         </div>
     </div>
 }
+
 <br />
 <br />

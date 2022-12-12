@@ -15,7 +15,7 @@ namespace ECommerce.Areas.Admin.Controllers
         CategoryManager cm = new CategoryManager(new EfCategoryRepository());
         public IActionResult Index()
         {
-            var values = scm.GetSubCategoryListWithCategory();
+            var values = scm.GetListAll();
             return View(values);
         }
         [HttpGet]

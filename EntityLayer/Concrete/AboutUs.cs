@@ -16,7 +16,7 @@ namespace EntityLayer.Concrete
         public string? ImageV1 { get; set; }
         public string? ImageV2 { get; set; }
         public string? MovieV1 { get; set; }
-        public string? Coutry { get; set; }
+        public string? Country { get; set; }
         public string? State { get; set; }
         public string? Company { get; set; }
         public string? Email { get; set; }

@@ -18,7 +18,10 @@
                                     <img src="@item.ThumbnailImgUrl" class="card-img-top img-fluid" alt="">
                                 </div>
                                 <div>
-                                    <img src="@item.ImageUrl" class="card-img-top img-fluid" alt="">
+                                    <img src="@item.ImageUrl1" class="card-img-top img-fluid" alt="">
+                                </div>
+                                <div>
+                                    <img src="@item.ImageUrl2" class="card-img-top img-fluid" alt="">
                                 </div>
                                 <br />
 
@@ -45,7 +48,7 @@
 
                             <hr>
                             <h4>Product Category</h4>
-                            @item.SubCategory?.Name
+                            @item.Category?.Name - @item.SubCategory?.Name
 
                             <h4>Product Brand</h4>
                             @item.Brand?.Name

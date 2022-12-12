@@ -9,6 +9,5 @@ namespace DataAccessLayer.Abstract
 {
     public interface ISubCategoryDal : IGenericDal<SubCategory>
     {
-        List<SubCategory> GetListWithCategory();
     }
 }

@@ -33,7 +33,7 @@ namespace DataAccessLayer.Migrations
                     b.Property<string>("Company")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Coutry")
+                    b.Property<string>("Country")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedDate")
@@ -191,15 +191,15 @@ namespace DataAccessLayer.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("StateId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
-
-                    b.Property<int>("VillageId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -215,7 +215,7 @@ namespace DataAccessLayer.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.HasIndex("VillageId");
+                    b.HasIndex("StateId");
 
                     b.ToTable("AspNetUsers", (string)null);
                 });
@@ -458,6 +458,9 @@ namespace DataAccessLayer.Migrations
                     b.Property<int>("BrandId")
                         .HasColumnType("int");
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Cost")
                         .HasColumnType("int");
 
@@ -467,7 +470,10 @@ namespace DataAccessLayer.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImageUrl")
+                    b.Property<string>("ImageUrl1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl2")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
@@ -497,6 +503,8 @@ namespace DataAccessLayer.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("BrandId");
+
+                    b.HasIndex("CategoryId");
 
                     b.HasIndex("SubCategoryId");
 
@@ -611,6 +619,8 @@ namespace DataAccessLayer.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ProductId");
+
                     b.ToTable("ProductRatings");
                 });
 
@@ -631,6 +641,9 @@ namespace DataAccessLayer.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<int>("Piece")
+                        .HasColumnType("int");
+
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
@@ -647,7 +660,26 @@ namespace DataAccessLayer.Migrations
                     b.ToTable("ShoppingCarts");
                 });
 
-            modelBuilder.Entity("EntityLayer.Concrete.StockAmount", b =>
+            modelBuilder.Entity("EntityLayer.Concrete.State", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("CityId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("States");
+                });
+
+            modelBuilder.Entity("EntityLayer.Concrete.StockPiece", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -664,10 +696,10 @@ namespace DataAccessLayer.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int>("SoldScore")
+                    b.Property<int>("RemainingPiece")
                         .HasColumnType("int");
 
-                    b.Property<int>("StockScore")
+                    b.Property<int>("SoldPiece")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedDate")
@@ -677,7 +709,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("StockAmounts");
+                    b.ToTable("StockPieces");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.SubCategory", b =>
@@ -708,28 +740,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
-
                     b.ToTable("SubCategories");
-                });
-
-            modelBuilder.Entity("EntityLayer.Concrete.Village", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("CityId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Villages");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -849,9 +860,9 @@ namespace DataAccessLayer.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("EntityLayer.Concrete.Village", "Village")
+                    b.HasOne("EntityLayer.Concrete.State", "State")
                         .WithMany("Users")
-                        .HasForeignKey("VillageId")
+                        .HasForeignKey("StateId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -859,7 +870,7 @@ namespace DataAccessLayer.Migrations
 
                     b.Navigation("Gender");
 
-                    b.Navigation("Village");
+                    b.Navigation("State");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Message", b =>
@@ -898,6 +909,12 @@ namespace DataAccessLayer.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("EntityLayer.Concrete.Category", "Category")
+                        .WithMany("Products")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("EntityLayer.Concrete.SubCategory", "SubCategory")
                         .WithMany("Products")
                         .HasForeignKey("SubCategoryId")
@@ -911,6 +928,8 @@ namespace DataAccessLayer.Migrations
                         .IsRequired();
 
                     b.Navigation("Brand");
+
+                    b.Navigation("Category");
 
                     b.Navigation("SubCategory");
 
@@ -939,6 +958,17 @@ namespace DataAccessLayer.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("EntityLayer.Concrete.ProductRating", b =>
+                {
+                    b.HasOne("EntityLayer.Concrete.Product", "Product")
+                        .WithMany("ProductRatings")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("EntityLayer.Concrete.ShoppingCart", b =>
                 {
                     b.HasOne("EntityLayer.Concrete.Product", "Product")
@@ -950,7 +980,7 @@ namespace DataAccessLayer.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("EntityLayer.Concrete.StockAmount", b =>
+            modelBuilder.Entity("EntityLayer.Concrete.StockPiece", b =>
                 {
                     b.HasOne("EntityLayer.Concrete.Product", "Product")
                         .WithMany("StockAmounts")
@@ -959,17 +989,6 @@ namespace DataAccessLayer.Migrations
                         .IsRequired();
 
                     b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("EntityLayer.Concrete.SubCategory", b =>
-                {
-                    b.HasOne("EntityLayer.Concrete.Category", "Category")
-                        .WithMany("SubCategories")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -1041,7 +1060,7 @@ namespace DataAccessLayer.Migrations
 
             modelBuilder.Entity("EntityLayer.Concrete.Category", b =>
                 {
-                    b.Navigation("SubCategories");
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.City", b =>
@@ -1060,19 +1079,21 @@ namespace DataAccessLayer.Migrations
 
                     b.Navigation("ProductComments");
 
+                    b.Navigation("ProductRatings");
+
                     b.Navigation("ShoppingCarts");
 
                     b.Navigation("StockAmounts");
                 });
 
+            modelBuilder.Entity("EntityLayer.Concrete.State", b =>
+                {
+                    b.Navigation("Users");
+                });
+
             modelBuilder.Entity("EntityLayer.Concrete.SubCategory", b =>
                 {
                     b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("EntityLayer.Concrete.Village", b =>
-                {
-                    b.Navigation("Users");
                 });
 #pragma warning restore 612, 618
         }

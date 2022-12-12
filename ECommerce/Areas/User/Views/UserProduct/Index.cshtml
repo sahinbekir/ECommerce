@@ -15,15 +15,18 @@
             <div class="col-md-3">
                 <div class="ibox">
                     <div class="ibox-content product-box">
-                        <a href="/User/UserProduct/Details/@item.Id">
+                        <a href="/Product/Details/@item.Id">
                             <img src="@item.ThumbnailImgUrl" class="card-img-top img-fluid" alt="">
                         </a>
                         <div class="product-desc">
                             <span class="product-price">
                                 $@item.Cost
                             </span>
-                            <small class="text-muted"><strong>@item.Brand?.Name</strong> - @item.SubCategory?.Name</small>
-                            <a href="/User/UserProduct/Details/@item.Id" class="product-name"> @item.Name</a>
+                            <small class="text-muted">
+                                <strong>@item.Brand?.Name</strong> - @item.Category?.Name - @item.SubCategory?.Name -
+                                <small>(@item.Version)</small>
+                            </small>
+                            <a href="/Product/Details/@item.Id" class="product-name"> @item.Name</a>
                             <div class="small m-t-xs">
                                 @item.Description?.Substring(0,item.Description.Substring(0,131).LastIndexOf(" "))...
                             </div>
