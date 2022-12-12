@@ -49,7 +49,7 @@ namespace ECommerce.Areas.User.Controllers
             {
                 return RedirectToAction("UpdateStockDetail" , "StockDetail", new { id = id });
             }
-            return RedirectToAction("MyProduct", "UserProduct");
+            return RedirectToAction("Index", "MyProduct");
         }
 
         [HttpGet]
@@ -87,7 +87,7 @@ namespace ECommerce.Areas.User.Controllers
                 sa.IsDeleted = check.IsDeleted;
                 spm.TUpdate(sa);
             }
-            return RedirectToAction("MyProduct", "UserProduct");
+            return RedirectToAction("Index", "MyProduct");
         }
     }
 }

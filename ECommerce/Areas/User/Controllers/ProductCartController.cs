@@ -58,8 +58,7 @@ namespace ECommerce.Areas.User.Controllers
             var username = User.Identity.Name;
             var userid = um.GetListAll().Where(x => x.UserName == username).Select(y => y.Id).FirstOrDefault();
             var check = pcartm.GetListAll().Where(x => x.ProductId == id).FirstOrDefault();
-            if (check == null)
-            {
+            
                 ProductCart pcart = new ProductCart();
                 pcart.ProductId = id;
                 pcart.UserId = userid;
@@ -67,21 +66,7 @@ namespace ECommerce.Areas.User.Controllers
                 pcart.UpdatedDate = DateTime.Now;
                 pcart.IsDeleted = false;
                 pcartm.TAdd(pcart);
-            }
-            else
-            {
-
-                check.UpdatedDate = DateTime.Now;
-                if (check.IsDeleted == false)
-                {
-                    check.IsDeleted = false;
-                }
-                else
-                {
-                    check.IsDeleted = false;
-                }
-                pcartm.TUpdate(check);
-            }
+            
             return RedirectToAction("Index", "ProductCart");
         }
         public IActionResult DeleteMyProductCart(int id)

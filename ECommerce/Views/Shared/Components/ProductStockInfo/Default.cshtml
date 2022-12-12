@@ -1,0 +1,6 @@
+﻿@model IEnumerable<EntityLayer.Concrete.StockPiece>
+@foreach (var item in Model)
+{
+    <strong>Selled : @item.SoldPiece / Have : @item.RemainingPiece</strong>
+}
+

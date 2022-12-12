@@ -10,6 +10,8 @@ namespace ECommerce.Areas.User.Controllers
     [Authorize(Roles ="User")]
     public class ProductCommentController : Controller
     {
+
+        ProductRatingManager prm = new ProductRatingManager(new EfProductRatingRepository());
         ProductCommentManager pcm = new ProductCommentManager(new EfProductCommentRepository());
         ProductManager pm = new ProductManager(new EfProductRepository());
         UserManager um = new UserManager(new EfUserRepository());
@@ -89,6 +91,12 @@ namespace ECommerce.Areas.User.Controllers
             var cururl = "https://localhost:3000/User/UserProduct/Details/";
             var urlid = p.ProductId;
             pcm.TAdd(p);
+            var prorat = prm.GetListAll().Where(x => x.ProductId == p.ProductId).FirstOrDefault();
+            prorat.TotalScore += p.Score;
+            prorat.RatingCount += 1;
+            prorat.UpdatedDate = DateTime.Now;
+            prm.TUpdate(prorat);
+            //return View(p);
             return Redirect(cururl + urlid);
         }
     }

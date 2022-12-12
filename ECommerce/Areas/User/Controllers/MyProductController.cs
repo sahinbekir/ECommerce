@@ -6,6 +6,7 @@ using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.CodeAnalysis;
 using X.PagedList;
 
 namespace ECommerce.Areas.User.Controllers
@@ -15,6 +16,7 @@ namespace ECommerce.Areas.User.Controllers
     public class MyProductController : Controller
     {
         UserManager um = new UserManager(new EfUserRepository());
+        ProductRatingManager prm = new ProductRatingManager(new EfProductRatingRepository());
         ProductManager pm = new ProductManager(new EfProductRepository());
         StockPieceManager sam = new StockPieceManager(new EfStockPieceRepository());
         public IActionResult Index(int page = 1)
@@ -121,6 +123,16 @@ namespace ECommerce.Areas.User.Controllers
             product.CreatedDate = DateTime.Now;
             product.UpdatedDate = DateTime.Now;
             pm.TAdd(product);
+            var proid = pm.GetListAll().Where(x => x.UserId == userid && x.Name == product.Name).Select(y => y.Id).FirstOrDefault();
+            ProductRating prorat = new ProductRating();
+            prorat.ProductId = proid;
+            prorat.TotalScore = 0;
+            prorat.RatingCount = 0;
+            prorat.CreatedDate = DateTime.Now;
+            prorat.UpdatedDate = DateTime.Now;
+            prorat.IsDeleted = false;
+            prm.TAdd(prorat);
+
             var npid = pm.GetListAll().Where(x => x.UserId == userid && x.Name == p.Name).Select(y => y.Id).FirstOrDefault();
             return RedirectToAction("Index", "StockDetail", new { id = npid });
         }

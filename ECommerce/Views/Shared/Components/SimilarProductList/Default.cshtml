@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<EntityLayer.Concrete.Product>
-<div class="wrapper wrapper-content animated fadeInRight">
+
     <div class="row">
         @foreach (var item in Model)
         {
@@ -13,7 +13,7 @@
                             <span class="product-price">
                                 $@item.Cost
                             </span>
-                            <small class="text-muted">@item.SubCategory?.Name</small>
+                            <small class="text-muted"><strong>@item.Brand?.Name</strong> - @item.Category?.Name - @item.SubCategory?.Name</small>
                             <a href="/Product/Details/@item.Id" class="product-name"> @item.Name</a>
                             
                         </div>
@@ -22,4 +22,3 @@
             </div>
         }
     </div>
-</div>

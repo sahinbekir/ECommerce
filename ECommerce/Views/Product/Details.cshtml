@@ -65,9 +65,9 @@
                             <hr>
                             <div>
                                 <div class="btn-group">
-                                    <button class="btn btn-primary btn-sm"><i class="fa fa-cart-plus"></i> Add to cart</button>
-                                    <button class="btn btn-white btn-sm"><i class="fa fa-star"></i> Add to wishlist news </button>
-                                    <button class="btn btn-white btn-sm"><i class="fa fa-envelope"></i> Contact with owner </button>
+                                    <a href="/SignUp/Index/" class="btn btn-primary btn-sm"><i class="fa fa-cart-plus"></i>  Add to cart </a>
+                                    <a href="/SignUp/Index/" class="btn btn-white btn-sm"><i class="fa fa-star"></i> Add to wishlist news </a>
+                                    <a href="/SignUp/Index/" class="btn btn-white btn-sm"><i class="fa fa-envelope"></i> Contact with owner </a>
                                 </div>
                             </div>
                             
@@ -81,7 +81,7 @@
                         <div class="col-md-7">
                             <h1 style="text-align:center;">
                                 <strong>
-                                    Comment About Product
+                                    Comments About Product
                                 </strong>
                             </h1>
                             @await Component.InvokeAsync("ProductCommentList", new { id = ViewBag.pid})
@@ -100,7 +100,7 @@
                     <span class="float-right">
                         Created Date - <i class="fa fa-clock-o"></i> @(((DateTime)item.CreatedDate).ToString("dd.MMM.yyyy"))
                     </span>
-                    As of @DateTime.Now <strong>Selled : 100 / Have : 200</strong>
+                    @await Component.InvokeAsync("ProductStockInfo", new { id = ViewBag.pid}) As of @DateTime.Now
                 </div>
             </div>
 

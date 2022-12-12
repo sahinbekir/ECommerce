@@ -95,7 +95,7 @@
                     <span class="float-right">
                         Created Date - <i class="fa fa-clock-o"></i> @(((DateTime)item.CreatedDate).ToString("dd.MMM.yyyy"))
                     </span>
-                    As of @DateTime.Now <strong>Selled : 100 / Have : 200</strong>
+                    @await Component.InvokeAsync("ProductStockInfo", new { id = ViewBag.pid}) As of @DateTime.Now
                 </div>
             </div>
 
