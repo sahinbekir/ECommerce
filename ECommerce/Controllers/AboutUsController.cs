@@ -11,7 +11,7 @@ namespace ECommerce.Controllers
         AboutUsManager aum = new AboutUsManager(new EfAboutUsRepository());
         public IActionResult Index()
         {
-            var value = aum.GetListAll().Where(x=>x.IsDeleted==false).ToList();
+            var value = aum.GetListAll().Where(x=>x.IsDeleted==false).Take(1).ToList();
             return View(value);
         }
     }

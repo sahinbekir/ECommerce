@@ -45,6 +45,574 @@ namespace ECommerce.Controllers
         MessageManager _messageManager = new MessageManager(new EfMessageRepository());
 
         ProductRatingManager _productRatingManager = new ProductRatingManager(new EfProductRatingRepository());
+        // Add Admin-Role-UserRole with cites-states-genders and about us
+        public async Task<IActionResult> Default()
+        {
+            var verify = _userManager.Users.FirstOrDefault();
+            if (verify != null) { return RedirectToAction("Index", "Product"); }
+            else
+            {
+                // GENDER
+                var gender = new Gender { Name = "Person - Male", CreatedDate = DateTime.Now, UpdatedDate = DateTime.Now, IsDeleted = false };
+                _genderManager.TAdd(gender);
+
+                gender = new Gender { Name = "Person - Female", CreatedDate = DateTime.Now, UpdatedDate = DateTime.Now, IsDeleted = false };
+                _genderManager.TAdd(gender);
+
+                gender = new Gender { Name = "Company - Unity", CreatedDate = DateTime.Now, UpdatedDate = DateTime.Now, IsDeleted = false };
+                _genderManager.TAdd(gender);
+
+
+                // CITY
+                var city = new City() { Name = "Adana" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Adıyaman" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Afyon" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Ağrı" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Amasya" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Ankara" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Antalya" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Artvin" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Aydın" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Balıkesir" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Bilecik" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Bingöl" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Bitlis" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Bolu" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Burdur" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Bursa" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Çanakkale" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Çankırı" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Çorum" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Denizli" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Diyarbakır" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Edirne" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Elazığ" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Erzincan" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Erzurum" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Eskişehir" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Gaziantep" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Giresun" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Gümüşhane" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Hakkari" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Hatay" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Isparta" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Mersin" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "İstanbul" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "İzmir" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Kars" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Kastamonu" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Kayseri" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Kırklareli" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Kırşehir" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Kocaeli" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Konya" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Kütahya" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Malatya" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Manisa" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Kahramanmaraş" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Mardin" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Muğla" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Muş" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Nevşehir" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Niğde" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Ordu" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Rize" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Sakarya" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Samsun" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Siirt" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Sinop" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Sivas" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Tekirdağ" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Tokat" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Trabzon" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Tunceli" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Şanlıurfa" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Uşak" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Van" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Yozgat" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Zonguldak" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Aksaray" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Bayburt" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Karaman" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Kırıkkale" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Batman" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Şırnak" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Bartın" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Ardahan" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Iğdır" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Yalova" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Karabük" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Kilis" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Osmaniye" };
+                _cityManager.TAdd(city);
+
+                city = new City() { Name = "Düzce" };
+                _cityManager.TAdd(city);
+
+
+                // STATE
+                var state = new State { CityId = 1, Name = "Adana Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 2, Name = "Adıyaman Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 3, Name = "Afyon Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 4, Name = "Ağrı Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 5, Name = "Amasya Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 6, Name = "Ankara Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 7, Name = "Antalya Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 8, Name = "Artvin Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 9, Name = "Aydın Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 10, Name = "Balıkesir Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 11, Name = "Bilecik Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 12, Name = "Bingöl Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 13, Name = "Bitlis Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 14, Name = "Bolu Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 15, Name = "Burdur Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 16, Name = "Bursa Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 17, Name = "Çanakkale Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 18, Name = "Çankırı Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 19, Name = "Çorum Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 20, Name = "Denizli Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 21, Name = "Diyarbakır Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 22, Name = "Edirne Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 23, Name = "Elazığ Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 24, Name = "Erzincan Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 25, Name = "Erzurum Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 26, Name = "Eskişehir Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 27, Name = "Gaziantep Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 28, Name = "Giresun Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 29, Name = "Gümüşhane Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 30, Name = "Hakkari Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 31, Name = "Hatay Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 32, Name = "Isparta Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 33, Name = "Mersin Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 34, Name = "İstanbul Avrupa Yakası Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 34, Name = "İstanbul Asya Yakası Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 35, Name = "İzmir Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 36, Name = "Kars Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 37, Name = "Kastamonu Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 38, Name = "Kayseri Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 39, Name = "Kırklareli Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 40, Name = "Kırşehir Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 41, Name = "Kocaeli Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 42, Name = "Konya Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 43, Name = "Kütahya Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 44, Name = "Malatya Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 45, Name = "Manisa Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 46, Name = "Kahramanmaraş Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 47, Name = "Mardin Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 48, Name = "Muğla Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 49, Name = "Muş Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 50, Name = "Nevşehir Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 51, Name = "Niğde Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 52, Name = "Ordu Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 53, Name = "Rize Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 54, Name = "Sakarya Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 55, Name = "Samsun Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 56, Name = "Siirt Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 57, Name = "Sinop Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 58, Name = "Sivas Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 59, Name = "Tekirdağ Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 60, Name = "Tokat Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 61, Name = "Trabzon Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 62, Name = "Tunceli Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 63, Name = "Şanlıurfa Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 64, Name = "Uşak Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 65, Name = "Van Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 66, Name = "Yozgat Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 67, Name = "Zonguldak Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 68, Name = "Aksaray Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 69, Name = "Bayburt Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 70, Name = "Karaman Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 71, Name = "Kırıkkale Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 72, Name = "Batman Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 73, Name = "Şırnak Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 74, Name = "Bartın Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 75, Name = "Ardahan Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 76, Name = "Iğdır Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 77, Name = "Yalova Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 78, Name = "Karabük Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 79, Name = "Kilis Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 80, Name = "Osmaniye Merkez" };
+                _stateManager.TAdd(state);
+
+                state = new State { CityId = 81, Name = "Düzce Merkez" };
+                _stateManager.TAdd(state);
+
+                // ADMIN ROLE
+                AppRole role = new AppRole
+                {
+                    Name = "Admin"
+                };
+                var result = await _roleManager.CreateAsync(role);
+
+
+                // ADMIN
+                AppUser admin1 = new AppUser();
+                admin1.Email = "admin1@ec.io";
+                admin1.UserName = "admin1";
+                admin1.FullName = "Admin Admin1";
+                admin1.PhoneNumber = "5311313071";
+                admin1.BornDate = DateTime.Now;
+                admin1.CityId = 6;
+                admin1.StateId = 1;
+                admin1.Address = "Atatürk Cd. Cumhuriyet Sk. no:1881";
+                admin1.GenderId = 3;
+                admin1.ImageUrl = "/Media/ecpp.png";
+                admin1.RegisterDate = DateTime.Now;
+                admin1.ProfileUpdatedDate = DateTime.Now;
+                admin1.IsBlocked = false;
+                admin1.IsDeleted = false;
+                var Password1 = "Aa.12345";
+                var result3 = await _userManager.CreateAsync(admin1, Password1);
+
+                
+                // ADMIN USER ROLE
+                var user1admin = _userManager.Users.FirstOrDefault(x => x.UserName == "admin1");
+                await _userManager.AddToRoleAsync(user1admin, "ADMIN");
+
+                // ABOUT US
+                var aboutus = new AboutUs
+                {
+                    ImageV1 = "/Media/eci1.png",
+                    ImageV2 = "/Media/eci2.png",
+                    MovieV1 = "/Media/ecm1.mp4",
+                    Company = "E-Com SB Inc.",
+                    Email = "ecom@come.io",
+                    Phone = "5714531881",
+                    Country = "Turkey",
+                    State = "Antakia",
+                    MapLocationV1 = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d103000.43678361534!2d36.02209944082478!3d36." +
+                    "22093929994746!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1525c24ab71e4761%3A0x9151857a8d1bab72!2zQW50YWt5YSwgS8O8w6fDvGtkYWx5YW4sIEFudGFreWEvSGF0YXk!" +
+                    "5e0!3m2!1str!2str!4v1670834422901!5m2!1str!2str",
+                    DetailsV1 = "One of the easiest ways to design and write your about us page is to get inspiration from about page examples.",
+                    DetailsV2 = "A remarkable about page is genuine, approachable, and distinguished. It should give the visitor a glimpse into what working with you might be like. You can include personal interests, stories, and photos that convey the unique story of your business. You may also include information about who’s on your team and what their roles are.\r\n\r\nAbout pages are personal to you and your company, so the structure of your about page will vary based on what you want to highlight. However, you’ll start with the same writing process.\r\n\r\nLet’s explore the set-by-step guide to building your about page.",
+                    CreatedDate = DateTime.Now,
+                    UpdatedDate = DateTime.Now,
+                    IsDeleted = false
+                };
+                _aboutUsManager.TAdd(aboutus);
+
+            }
+            return RedirectToAction("Index", "SignInAdmin");
+        }
+
 
         // GENDER-CITY-STATE
         public IActionResult Index()
@@ -615,7 +1183,7 @@ namespace ECommerce.Controllers
             return RedirectToAction("Index3", "Moderator");
         }
 
-        // 
+        // BRAND-CATEGORY-SUBCATEGORY
         public IActionResult Index3()
         {
             var verify = _userManager.Users.FirstOrDefault();

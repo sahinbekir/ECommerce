@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20221212093024_mig_ecdb")]
+    [Migration("20221216125335_mig_ecdb")]
     partial class mig_ecdb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
