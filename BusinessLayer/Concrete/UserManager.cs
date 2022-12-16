@@ -26,6 +26,11 @@ namespace BusinessLayer.Concrete
             return _userDal.GetList();
         }
 
+        public List<AppUser> GetUserListWithCSG()
+        {
+            return _userDal.GetListWithCSG();
+        }
+
         public void TAdd(AppUser t)
         {
             _userDal.Insert(t);

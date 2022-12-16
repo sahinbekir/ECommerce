@@ -18,7 +18,7 @@ namespace ECommerce.Areas.User.Controllers
         {
             var username = User.Identity.Name;
             var userid = um.GetListAll().Where(x => x.UserName == username).Select(y => y.Id).FirstOrDefault();
-            var values = scartm.GetListAll().Where(x => x.UserId == userid && x.IsDeleted == false).ToList();
+            var values = scartm.GetListAll().Where(x => x.UserId == userid).ToList();
             return View(values);
         }
         [HttpGet]

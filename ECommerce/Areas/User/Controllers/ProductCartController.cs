@@ -50,7 +50,7 @@ namespace ECommerce.Areas.User.Controllers
         {
             var username = User.Identity.Name;
             var userid = um.GetListAll().Where(x => x.UserName == username).Select(y => y.Id).FirstOrDefault();
-            var values = pcartm.GetListAll().Where(x=>x.UserId==userid && x.IsDeleted==false).ToList();
+            var values = pcartm.GetListAll().Where(x=>x.UserId==userid).ToList();
             return View(values);
         }
         public IActionResult AddMyProductCart(int id)

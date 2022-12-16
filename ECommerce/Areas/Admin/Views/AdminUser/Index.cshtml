@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout/AdminLayout.cshtml";
+}
+
+<h1>Index</h1>
+
+@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model IPagedList<EntityLayer.Concrete.AppUser>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout/AdminLayout.cshtml";
+}
+
+
+<h1>App All Products</h1>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3">
+                <div class="ibox">
+                    <div class="ibox-content product-box">
+                        <a href="">
+                            <img src="@item.ImageUrl" class="card-img-top img-fluid" alt="">
+                        </a>
+                        <div class="product-desc">
+                            <span class="product-price">
+                                @item.City?.Name
+                            </span>
+                            <small class="text-muted">
+                                <strong>@item.Email</strong>
+                            </small>
+                            <a href="" class="product-name"> @item.FullName</a>
+                            <div class="m-t text-righ">
+                                <a href="" class="btn btn-xs btn-outline btn-primary">User About <i class="fa fa-long-arrow-right"></i> </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new {page}))
+</div>
